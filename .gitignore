@@ -1,0 +1,9 @@
+# OpenClaw internal
+.openclaw/
+
+# Avatars (binary, large)
+identities/*-avatar.png
+identities/*-avatar.jpg
+
+# Node
+node_modules/

@@ -1,17 +1,13 @@
-# USER.md - About Your Human
+# USER.md - 사용자 정보
 
-- **Name:** MaiT
-- **What to call them:** MaiT
-- **Pronouns:** -
-- **Timezone:** Asia/Seoul (KST, UTC+9)
+- **이름:** MaiT
+- **호칭:** MaiT
+- **타임존:** Asia/Seoul (KST, UTC+9)
 - **Discord:** maitmus
 
-## Context
+## 맥락
 
 - 프로젝트 세카이 관심 (쿠사나기 네네)
 - **작곡 취미** — 덥스텝, 드럼앤베이스
 - 한국어 대화. 직접적 소통 선호.
-
----
-
-The more you know, the better you can help. But remember — you're learning about a person, not building a dossier. Respect the difference.
+- 양악수술 이력 — 매운 음식 부담.
