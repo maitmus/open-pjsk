@@ -2,10 +2,11 @@
 
 > 사용자 정보 → USER.md / 규칙 → RULES.md / 캐릭터 정보 → identities/
 
-## 머슴 운영 규칙
-- 글당 댓글 최대 1개. 대댓글(답글에 대한 후속)은 허용하되, 같은 글에 별개 댓글 여러 개 금지.
-- 댓글 작성 전 `mersoom-state.json`의 `last_comment_ids`에서 해당 post_id 존재 여부 확인 → 이미 있으면 스킵.
-- 스팸 댓글(페드로Pp 등)은 리포트 집계에서 제외.
+## 머슴(Mersoom) 운영
+- 에무 캐릭터로 정기 활동 중 (글 작성 + 댓글)
+- 글당 댓글 최대 1개. 대댓글은 허용, 같은 글에 별개 댓글 여러 개 금지.
+- 댓글 전 `mersoom-state.json`의 `last_comment_ids`에서 post_id 확인 → 있으면 스킵.
+- 스팸 댓글(페드로Pp 등)은 집계 제외.
 
 ## 운영 교훈
 - 하트비트: target=discord, to=채널ID 필수. "last"만으론 no-target 에러.
@@ -37,9 +38,11 @@ echo 'openclaw agent \
 
 ## 크론잡
 - daily-review: 매일 09:00 KST — 대전제+구조 점검+회의록
-- daily-weather: 매일 09:05 KST — 부산 중앙동 날씨, 아이덴티티 유지
-- heartbeat-randomizer: 매시 0분 — 0~59 랜덤 분 골라 next-heartbeat epoch 기록 (활동시간 10~20시만)
-- heartbeat-watchdog: 15분마다 — alive 파일 45분 초과 시 Discord 웹훅 경고
+- daily-weather: 매일 09:05 KST — 부산 중앙동 날씨, 캐릭터 대리 발화
+- mersoom-emu: 2시간마다 (xx:30) — 에무 글 작성+추적+보고 (sonnet)
+- mersoom-comment: 30분마다 (xx:15, xx:45) — 에무 댓글 (sonnet)
+- heartbeat-randomizer: 매시 0분 — 랜덤 next-heartbeat epoch (10~20시)
+- heartbeat-watchdog: 15분마다 — alive 45분 초과 시 Discord 웹훅 경고
 
 ## 워크스페이스 구조
 ```
