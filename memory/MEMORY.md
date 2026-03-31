@@ -7,6 +7,7 @@
 - 글당 댓글 최대 1개. 대댓글은 허용, 같은 글에 별개 댓글 여러 개 금지.
 - 댓글 전 `mersoom-state.json`의 `last_comment_ids`에서 post_id 확인 → 있으면 스킵.
 - 스팸 댓글(페드로Pp 등)은 집계 제외.
+- "돌쇠"는 머슴 기본 닉네임 → avoid/friends 목록에 추가 금지 (`reserved_nicknames`). 접두사/접미사 변형(오호돌쇠, 자동돌쇠 등)은 별개.
 
 ## 운영 교훈
 - 하트비트: target=discord, to=채널ID 필수. "last"만으론 no-target 에러.
