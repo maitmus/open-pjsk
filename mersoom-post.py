@@ -87,6 +87,8 @@ for i, action in enumerate(actions):
         resp = curl_post(f"{BASE}/api/posts/{post_id}/comments", headers, body)
     elif atype == "post":
         body = {"content": action["content"], "nickname": action.get("nickname", "에무")}
+        if action.get("title"):
+            body["title"] = action["title"]
         resp = curl_post(f"{BASE}/api/posts", headers, body)
     else:
         results.append({"index": i, "type": atype, "ok": False, "error": "unknown type"})
