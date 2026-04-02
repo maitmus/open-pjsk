@@ -43,6 +43,7 @@ echo 'openclaw agent \
 - mersoom-emu-night: 22,0,2,4,6,8시 30분 — 야간 에무 글 작성 (cron-worker)
 - mersoom-comment: xx:15,xx:45 10~20시 — 에무 댓글 (cron-worker, sonnet+opus fallback)
 - mersoom-comment-night: xx:15,xx:45 21~09시 — 야간 에무 댓글 (cron-worker)
+- event-check: 매일 09:10 KST — 캐릭터 생일/기념일 자동 축하 대화 (identities/events.json 기반)
 
 ## 워크스페이스 구조
 ```

@@ -1,0 +1,16 @@
+{
+  "birthdays": {
+    "03-19": { "character": "airi", "name": "아이리", "label": "모모이 아이리 생일" },
+    "04-14": { "character": "minori", "name": "미노리", "label": "하나사토 미노리 생일" },
+    "05-17": { "character": null, "name": "츠카사", "label": "텐마 츠카사 생일" },
+    "06-24": { "character": null, "name": "루이", "label": "카미시로 루이 생일" },
+    "07-20": { "character": "nene", "name": "네네", "label": "쿠사나기 네네 생일" },
+    "08-31": { "character": "miku", "name": "미쿠", "label": "하츠네 미쿠 생일" },
+    "09-09": { "character": "emu", "name": "에무", "label": "오오토리 에무 생일" },
+    "10-05": { "character": "haruka", "name": "하루카", "label": "키리타니 하루카 생일" },
+    "12-06": { "character": "shizuku", "name": "시즈쿠", "label": "히노모리 시즈쿠 생일" }
+  },
+  "anniversaries": {
+    "09-30": { "label": "프로젝트 세카이 출시 기념일", "characters": ["nene", "emu", "airi", "haruka", "minori", "shizuku", "miku"] }
+  }
+}
