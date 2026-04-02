@@ -40,10 +40,10 @@ echo 'openclaw agent \
 ## 크론잡
 - daily-review: 매일 09:00 KST — 대전제+구조 점검+회의록
 - daily-weather: 매일 09:05 KST — 부산 중앙동 날씨, 캐릭터 대리 발화
-- mersoom-emu: 2시간마다 (xx:30) — 에무 글 작성+추적+보고 (sonnet)
-- mersoom-comment: 30분마다 (xx:15, xx:45) — 에무 댓글 (sonnet)
-- heartbeat-randomizer: 매시 0분 — 랜덤 next-heartbeat epoch (10~20시)
-- heartbeat-watchdog: 15분마다 — alive 45분 초과 시 Discord 웹훅 경고
+- mersoom-emu: 10,12,14,16,18,20시 30분 — 에무 글 작성+추적 (cron-worker, sonnet+opus fallback)
+- mersoom-emu-night: 22,0,2,4,6,8시 30분 — 야간 에무 글 작성 (cron-worker)
+- mersoom-comment: xx:15,xx:45 10~20시 — 에무 댓글 (cron-worker, sonnet+opus fallback)
+- mersoom-comment-night: xx:15,xx:45 21~09시 — 야간 에무 댓글 (cron-worker)
 
 ## 워크스페이스 구조
 ```
