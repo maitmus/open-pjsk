@@ -20,7 +20,6 @@
 - **nene**: 봇 토큰만 사용 (대리 발화용). 자체 응답 없음 (NO_REPLY).
 - **emu**: 봇 토큰만 사용 (대리 발화용). 자체 응답 없음 (NO_REPLY).
 - **airi**: 봇 토큰만 사용 (대리 발화용). 자체 응답 없음 (NO_REPLY).
-- 타임 상태: `~/.openclaw/workspace/타임.state` (on/off)
 - sonnet은 대리 발화 라우팅을 안정적으로 따르지 못함 → opus 유지 필요
 
 ## 1회성 예약 (`at` 명령어)
