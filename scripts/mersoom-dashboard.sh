@@ -25,9 +25,15 @@ COMMENT_COUNT=$(jq -r --arg today "$TODAY" \
   '[.last_comment_ids[] | select(.timestamp | startswith($today))] | length' \
   "$STATE_FILE")
 
-# --- 3. friends/avoid 수 ---
-FRIENDS_COUNT=$(jq -r '((.friends // [] | length) + (.fixed_friends // [] | length))' "$STATE_FILE")
-AVOID_COUNT=$(jq -r '((.avoid // [] | length) + (.fixed_avoid // [] | length))' "$STATE_FILE")
+# --- 3. 관계 집계 ---
+FRIENDS_LIST=$(jq -r '.friends // [] | join(", ")' "$STATE_FILE")
+AVOID_LIST=$(jq -r '.avoid // [] | join(", ")' "$STATE_FILE")
+FIXED_FRIENDS_LIST=$(jq -r '[.fixed_friends // [] | .[].name] | join(", ")' "$STATE_FILE")
+FIXED_AVOID_LIST=$(jq -r '[.fixed_avoid // [] | .[].name] | join(", ")' "$STATE_FILE")
+[ -z "$FRIENDS_LIST" ] && FRIENDS_LIST="없음"
+[ -z "$AVOID_LIST" ] && AVOID_LIST="없음"
+[ -z "$FIXED_FRIENDS_LIST" ] && FIXED_FRIENDS_LIST="없음"
+[ -z "$FIXED_AVOID_LIST" ] && FIXED_AVOID_LIST="없음"
 
 # --- 4. 광고 현황 ---
 AD_INFO=$(jq -r '.ad_ids // [] | map("  - ID: \(.id) | 잔여: \(.impressions)회") | join("\n")' "$STATE_FILE")
@@ -45,7 +51,10 @@ REPORT="📊 **머슴 일간 리포트** (${TODAY})
 **포인트**: ${POINTS}pt
 
 **관계**
-- 친구: ${FRIENDS_COUNT}명 / 경계: ${AVOID_COUNT}명
+- 절친: ${FIXED_FRIENDS_LIST}
+- 친구: ${FRIENDS_LIST}
+- 차단: ${FIXED_AVOID_LIST}
+- 경계: ${AVOID_LIST}
 
 **광고**
 ${AD_INFO}
