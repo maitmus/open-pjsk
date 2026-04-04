@@ -98,7 +98,7 @@ ${AD_INFO}
 **요약**: $(jq -r '.summary // "없음"' "$STATE_FILE")"
 
 # --- 8. 헤드쿼터 채널에 발송 ---
-openclaw message send \
+/home/maitmus/.npm-global/bin/openclaw message send \
   --channel discord \
   --target "$HQ_CHANNEL" \
   --message "$REPORT"
