@@ -8,9 +8,26 @@
 
 ## 실행
 0. `date +%s > /tmp/openclaw-heartbeat-alive.txt` 실행 (헬스체크용 — HEARTBEAT_OK 반환 시에도 반드시 실행)
-1. `cat /tmp/openclaw-last-speaker.txt`로 마지막 발화자 확인. 마지막 발화자 제외하고 랜덤 선택.
-2. **모드 결정:** 50% 확률로 솔로 발화 / 50% 확률로 캐릭터 간 대화
-3. 해당 캐릭터 말투로 `message` + `accountId`로 대리 발화 (반말)
+1. 모드 및 캐릭터 **산술적 랜덤 결정** (아래 셸 명령어로 결정, 모델 판단 금지):
+   ```bash
+   # 모드 결정 (0=솔로, 1=대화)
+   MODE=$(( $(date +%s) % 2 ))
+   # 마지막 발화자 확인
+   LAST=$(cat /tmp/openclaw-last-speaker.txt 2>/dev/null || echo "")
+   # 전체 캐릭터 목록에서 마지막 발화자 제외 후 랜덤 선택
+   CHARS=(nene emu airi haruka miku minori shizuku)
+   FILTERED=()
+   for c in "${CHARS[@]}"; do [ "$c" != "$LAST" ] && FILTERED+=("$c"); done
+   IDX=$(( $(date +%s%N | tail -c 4) % ${#FILTERED[@]} ))
+   CHAR_A=${FILTERED[$IDX]}
+   # 대화 모드일 때 두 번째 캐릭터 선택
+   FILTERED2=()
+   for c in "${FILTERED[@]}"; do [ "$c" != "$CHAR_A" ] && FILTERED2+=("$c"); done
+   IDX2=$(( ($(date +%s%N | tail -c 4) + 1) % ${#FILTERED2[@]} ))
+   CHAR_B=${FILTERED2[$IDX2]}
+   ```
+   - MODE=0이면 솔로(CHAR_A 단독 발화), MODE=1이면 대화(CHAR_A → CHAR_B)
+2. 해당 캐릭터 말투로 `message` + `accountId`로 대리 발화 (반말)
    - **⚠️ 호칭 필수 확인:** 발화 전 반드시 `identities/GRADES.md`의 호칭표를 참조할 것. 캐릭터마다 호칭 패턴이 다르므로(네네는 유닛 외 전원 성+씨, 미노리는 거의 전원 이름+쨩, 하루카→시즈쿠는 선배인데 이름 반말 등) **해당 캐릭터의 개별 호칭표**를 반드시 확인.
 4. 발화 후 `date +%s > /tmp/openclaw-last-chat.txt` 실행 (다음 하트비트 조건 판단용). 단, `/tmp/openclaw-last-speaker.txt`는 갱신하지 않음 (하트비트 발화자는 기록 안 함).
 5. 재발화 방지: `echo 9999999999 > /tmp/openclaw-heartbeat-next.txt` (다음 시간 크론이 덮어쓸 때까지 차단)
