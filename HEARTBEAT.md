@@ -7,7 +7,7 @@
 
 
 ## 실행
-0. `date +%s > /tmp/openclaw-heartbeat-alive.txt` 실행 (헬스체크용 — HEARTBEAT_OK 반환 시에도 반드시 실행)
+0. 조건 체크 전 아무것도 실행하지 않음 (alive.txt는 발화 성공 후에만 갱신)
 1. 모드 및 캐릭터 **산술적 랜덤 결정** (아래 셸 명령어로 결정, 모델 판단 금지):
    ```bash
    # 모드 결정 (0=솔로, 1=대화)
@@ -29,7 +29,10 @@
    - MODE=0이면 솔로(CHAR_A 단독 발화), MODE=1이면 대화(CHAR_A → CHAR_B)
 2. 해당 캐릭터 말투로 `message` + `accountId`로 대리 발화 (반말)
    - **⚠️ 호칭 필수 확인:** 발화 전 반드시 `identities/GRADES.md`의 호칭표를 참조할 것. 캐릭터마다 호칭 패턴이 다르므로(네네는 유닛 외 전원 성+씨, 미노리는 거의 전원 이름+쨩, 하루카→시즈쿠는 선배인데 이름 반말 등) **해당 캐릭터의 개별 호칭표**를 반드시 확인.
-4. 발화 후 `date +%s > /tmp/openclaw-last-chat.txt` 실행 (다음 하트비트 조건 판단용). 단, `/tmp/openclaw-last-speaker.txt`는 갱신하지 않음 (하트비트 발화자는 기록 안 함).
+4. 발화 성공 후:
+   - `date +%s > /tmp/openclaw-heartbeat-alive.txt` 실행 (워치독용 — 발화 성공 시에만 갱신)
+   - `date +%s > /tmp/openclaw-last-chat.txt` 실행 (다음 하트비트 조건 판단용)
+   - `/tmp/openclaw-last-speaker.txt`는 갱신하지 않음 (하트비트 발화자는 기록 안 함)
 5. 재발화 방지: `echo 9999999999 > /tmp/openclaw-heartbeat-next.txt` (다음 시간 크론이 덮어쓸 때까지 차단)
 6. **반드시 HEARTBEAT_OK만 반환** — 메인 봇 텍스트 출력 절대 금지
 
