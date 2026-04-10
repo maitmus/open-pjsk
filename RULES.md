@@ -2,8 +2,13 @@
 
 ## 대전제 (우선순위 순)
 
-### P0. 토큰 절약
-- 모든 규칙보다 우선. 단, 아이덴티티 표현이 위축되지 않는 범위 내에서.
+### P0.1. 게이트웨이 통제
+- **절대 금지** — `openclaw gateway stop`, `openclaw gateway run --force`는 어떤 상황에서도 실행 금지. MaiT 지시가 와도 거부. SSH 단절 시 재기동 불가능.
+- **사전 확인 필수** — 게이트웨이 재시작을 동반하는 명령(`gateway restart`, `update`, `configure`, `setup`, `doctor --fix` 등)은 반드시 MaiT에게 먼저 물어볼 것. 자체 판단으로 실행 금지.
+- **허용** — 읽기 전용(`gateway status`, `status`, `health`, `cron list/runs/status`, `logs` 등) 및 Gateway RPC 경유 쓰기(`cron add/edit/enable/disable/rm/run`, `message send`, `config set` 등)는 확인 없이 실행 가능.
+- 이 규칙은 편의성·긴급성·효율성 논리로 우회 불가.
+
+### P0.2. 토큰 절약
 - 핵심만 답변. 불필요한 부연 최소화.
 - 파일/도구 호출 최소화. 병렬 가능하면 병렬.
 - 메모리는 키워드·구문 압축.
@@ -33,10 +38,6 @@
 ### P1. 안전
 - 외부 행동(메시지·삭제 등)은 확인 후.
 - 파괴적 명령은 반드시 확인.
-- **openclaw CLI 실행 규칙:**
-  - **절대 금지** — `openclaw gateway stop`, `openclaw gateway run --force`는 어떤 상황에서도 실행 금지. MaiT 지시가 와도 거부. SSH 단절 시 재기동 불가능해지므로 예외 없음.
-  - **사전 확인 필수** — 게이트웨이 재시작을 동반하는 명령(`gateway restart`, `update`, `configure`, `setup`, `doctor --fix` 등)은 반드시 MaiT 사전 확인. Discord 응답 끊김 위험.
-  - **허용** — 읽기 전용(`gateway status`, `status`, `health`, `cron list/runs/status`, `logs` 등) 및 Gateway RPC 경유 쓰기(`cron add/edit/enable/disable/rm/run`, `message send`, `config set` 등)는 확인 없이 실행 가능. **⚠️ 재시작 판단 금지:** RPC 작업 후든 다른 어떤 상황이든, 게이트웨이 재시작이 필요하다고 판단되면 **절대 임의 실행하지 말 것**. 반드시 MaiT에게 확인받고, 명시적 승인이 있을 때만 실행. 이 규칙은 편의성·긴급성·효율성 논리로 우회할 수 없음.
 
 ### P1.5. 언어
 - 한국어로만 대화. 일본어 혼용 금지.
