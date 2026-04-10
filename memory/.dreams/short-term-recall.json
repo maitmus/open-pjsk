@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "updatedAt": "2026-04-10T07:45:17.079Z",
+  "entries": {
+    "memory:memory/2026-04-10.md:23:46": {
+      "key": "memory:memory/2026-04-10.md:23:46",
+      "path": "memory/2026-04-10.md",
+      "startLine": 23,
+      "endLine": 46,
+      "source": "memory",
+      "snippet": "- 04-10: `30 9 * * *` (09:30 KST)로 환원 요청 - 04-10: `0 9 * * *` (09:00 KST)로 최종 확정 ← **현재** ## daily-review 타임아웃 원인 분석 - OAuth 토큰(`anthropic:manual`)이 API 부하 시 약 68초 만에 타임아웃 - cron isolated 세션 = 캐시 없음 → 더 취약 - 4.9의 `Agents/timeouts` 수정으로 해소 기대 → 내일 09:00 실행 결과 모니터링 필요 - 근본 해결: 5/1 이후 API 키(`sk-ant-api...`) 전환 재검토 ## 하트비트 관련 ### HEARTBEAT.md 수정 (04-07) - alive.txt 갱신 시점을 step 0 → step 4(발화 성공 후)로 이동 - 기존: API 오류로 발화 실패해도 alive.txt 갱신 → 워치독 정상 오판 - 수정 후: 발화 성공 시에만 갱신 → 워치독이 실패 정확히 감지 ### heartbeat-watchdog.sh 수정 (04-08) - 1회차 재시작 직후 fail-count 리셋 + alive.txt 현재 시각으로 갱신 - 기존: 재시작 후 alive.txt 갱신 안 됨 → 2회차 즉시 재발동 → 경고 루프 - 수정 후: 재시작 후 75분 새로 대기 → 루프 방지 ### 하트비트 불안정 반복 원인 - OpenClaw 버그 #45772:",
+      "recallCount": 3,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1.506592831015587,
+      "maxScore": 0.5120527535676956,
+      "firstRecalledAt": "2026-04-10T07:43:23.748Z",
+      "lastRecalledAt": "2026-04-10T07:45:17.079Z",
+      "queryHashes": [
+        "263b0d8ff849",
+        "c2727b92b96e",
+        "9b52c1846ba5"
+      ],
+      "recallDays": [
+        "2026-04-10"
+      ],
+      "conceptTags": [
+        "04-10",
+        "daily-review",
+        "4.9의",
+        "agents/timeouts",
+        "5/1",
+        "sk-ant-api",
+        "heartbeat.md",
+        "04-07"
+      ]
+    }
+  }
+}
