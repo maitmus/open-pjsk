@@ -17,11 +17,12 @@
 - MEMORY.md는 심볼릭 링크 (workspace/MEMORY.md → memory/MEMORY.md). IDENTITY.md는 일반 파일 (OpenClaw 자동 생성).
 
 ## 에이전트 구조
-- **main**: 라우터+운영. 모든 메시지 수신 → 대리 발화 (`message` + `accountId`). 타임 모드 시 직접 응답.
-- **nene**: 봇 토큰만 사용 (대리 발화용). 자체 응답 없음 (NO_REPLY).
-- **emu**: 봇 토큰만 사용 (대리 발화용). 자체 응답 없음 (NO_REPLY).
-- **airi**: 봇 토큰만 사용 (대리 발화용). 자체 응답 없음 (NO_REPLY).
-- sonnet은 대리 발화 라우팅을 안정적으로 따르지 못함 → opus 유지 필요
+- **main**: 운영 전담. 헤드쿼터 채널 직접 응답. 세카이 채널 메시지는 sekai-router로 라우팅됨.
+- **sekai-router**: 세카이 채널(`1485510333115273339`) 전용 대리 발화 라우터. workspace-sekai. 텍스트 직접 출력 금지.
+- **cron-worker**: 머슴 글/댓글 크론 전용.
+- **nene/emu/airi 등**: 봇 토큰만 사용 (대리 발화용). 자체 응답 없음.
+- sonnet은 대리 발화 라우팅을 안정적으로 따르지 못함 → 재발 시 sekai-router를 opus로 전환
+- bindings: `discord peer=channel:1485510333115273339` → sekai-router (peer match가 accountId match보다 우선순위 높음)
 
 ## 1회성 예약 (`at` 명령어)
 - `at` + `atd` 설치 완료 (2026-03-26)
@@ -49,14 +50,21 @@ echo 'openclaw agent \
 
 ## 워크스페이스 구조
 ```
-workspace/
+workspace/           ← main 에이전트
 ├── AGENTS.md, SOUL.md, RULES.md, USER.md, HEARTBEAT.md
 ├── MEMORY.md → memory/MEMORY.md
 ├── identities/ (nene, emu, airi, haruka, miku, minori, shizuku + GRADES.md)
 ├── memory/ (daily/, reviews/, knowledge/)
 └── 타임.state
+
+workspace-sekai/     ← sekai-router 에이전트 전용
+├── SOUL.md (대리 발화 전용, 드래과 프레이밍)
+├── AGENTS.md
+├── identities/ → 심볼릭 링크 (workspace 공유)
+├── memory/ → 심볼릭 링크
+└── USER.md, HEARTBEAT.md, RULES.md → 심볼릭 링크
 ```
-- workspace-nene/, workspace-emu/: NO_REPLY 전용
+- workspace-nene/, workspace-emu/: NO_REPLY 전용 (미사용)
 
 ## 세션 관리
 - contextTokens: 200000 (agents.defaults)
