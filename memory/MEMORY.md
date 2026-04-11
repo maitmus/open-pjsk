@@ -15,6 +15,10 @@
 - Discord 봇 아바타 변경: 2번/시간 안전 라인.
 - 나무위키 web_fetch: 상단 네비게이션이 길어 maxChars 40000+ 필요.
 - MEMORY.md는 심볼릭 링크 (workspace/MEMORY.md → memory/MEMORY.md). IDENTITY.md는 일반 파일 (OpenClaw 자동 생성).
+- **`systemPromptOverride`는 AGENTS.md/SOUL.md를 완전히 대체함** → 워크스페이스 파일 무시됨. 절대 사용 금지.
+- **`replyToMode: "off"`**는 Discord reply 스레드 방식 OFF이지 텍스트 전송 자체를 막는 게 아님.
+- **message tool `channel` 파라미터** = Discord 플랫폼명("discord"). 채널 ID는 `target` 파라미터에 넣어야 함.
+- OpenClaw에서 에이전트 텍스트 reply를 런타임 레벨에서 완전 차단하는 공식 옵션 없음 → 모델 지시 또는 구조적 분리로만 가능.
 
 ## 에이전트 구조
 - **main**: 운영 전담. 헤드쿼터 채널 직접 응답. 세카이 채널 메시지는 sekai-router로 라우팅됨.
