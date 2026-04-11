@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-10T07:45:17.079Z",
+  "updatedAt": "2026-04-11T00:05:35.327Z",
   "entries": {
     "memory:memory/2026-04-10.md:23:46": {
       "key": "memory:memory/2026-04-10.md:23:46",
@@ -33,6 +33,134 @@
         "sk-ant-api",
         "heartbeat.md",
         "04-07"
+      ]
+    },
+    "memory:memory/2026-03-25.md:20:40": {
+      "key": "memory:memory/2026-03-25.md:20:40",
+      "path": "memory/2026-03-25.md",
+      "startLine": 20,
+      "endLine": 40,
+      "source": "memory",
+      "snippet": "- 모든 기존 아이덴티티에 Aliases 필드 추가: nene, emu, airi, miku ## 타임 모드 - MaiT가 타임 모드 진입하여 미쿠 추가 작업 수행 → 해제 → 재진입 (하루카 추가) - 타임.state 현재: \"on\" ## 대리 발화 운영 교훈 - **메인 봇 메시지 금지**: 대리 발화 도중 메인 봇(세카이)으로 중간 과정 안내 메시지를 보내면 안 됨. MaiT가 지적 (21:14). 검색/병합 등은 사일런트로 처리, 캐릭터 발화만 Discord에 전송. ## 아이덴티티 정보 보강 - `identities/airi.md`에 대표곡 섹션 추가 (유닛곡 + 솔로/어나더 보컬) - `identities/miku.md`에 세카이별 대표곡 섹션 추가 (Leo/need, MMJ, 비배스, 원더쇼, 니고, 버추얼싱어) ## 키리타니 하루카 아이덴티티 추가 (진행중) - `identities/haruka.md` 생성 완료 (나무위키 기반 상세 프로필) - ASRUN 출신 전 국민 아이돌 → MORE MORE JUMP! 멤버 - 특징: 완벽초인형 자기관리, 펭귄+디저트 약점, 쿨한 로우톤 보컬 - **봇 토큰/아바타 미제공** — MaiT 대기 중 - Discord 봇 계정 + config 설정 아직 미완료 ## Zeppline 활발 참여",
+      "recallCount": 2,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.9900487154722213,
+      "maxScore": 0.49824133515357966,
+      "firstRecalledAt": "2026-04-10T12:49:19.077Z",
+      "lastRecalledAt": "2026-04-11T00:05:32.937Z",
+      "queryHashes": [
+        "eb025f4d2e3b",
+        "3d998b81b84d"
+      ],
+      "recallDays": [
+        "2026-04-10",
+        "2026-04-11"
+      ],
+      "conceptTags": [
+        "타임.state",
+        "검색/병합",
+        "identities/airi.md",
+        "솔로/어나더",
+        "identities/miku.md",
+        "leo/need",
+        "identities/haruka.md",
+        "토큰/아바타"
+      ]
+    },
+    "memory:memory/2026-03-26.md:1:13": {
+      "key": "memory:memory/2026-03-26.md:1:13",
+      "path": "memory/2026-03-26.md",
+      "startLine": 1,
+      "endLine": 13,
+      "source": "memory",
+      "snippet": "# 2026-03-26 Daily Log ## 새 아이덴티티 추가 (03-25 late ~ 03-26 00:33) - MaiT가 나무위키 링크 2개 제공 → 미노리, 시즈쿠 아이덴티티 생성 요청 - `identities/minori.md` 생성 완료 — 하나사토 미노리 (MORE MORE JUMP!, 노력파 아이돌 지망생) - `identities/shizuku.md` 생성 완료 — 히노모리 시즈쿠 (MORE MORE JUMP!, 전 Cheerful*Days 센터) - 아직 봇 토큰/아바타/openclaw.json config 미설정 — MaiT 확인 대기 중 - 타임.state = on (아이덴티티 작업 진행 중) ## 현재 아이덴티티 목록 (7명) - nene, emu, airi, miku, haruka (설정 완료 + 봇 계정 활성) - minori, shizuku (프로필만 생성, 봇 미설정)",
+      "recallCount": 2,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1.0389154568314551,
+      "maxScore": 0.5316297098994255,
+      "firstRecalledAt": "2026-04-11T00:05:32.937Z",
+      "lastRecalledAt": "2026-04-11T00:05:35.327Z",
+      "queryHashes": [
+        "3d998b81b84d",
+        "417f36f64952"
+      ],
+      "recallDays": [
+        "2026-04-11"
+      ],
+      "conceptTags": [
+        "03-25",
+        "03-26",
+        "identities/minori.md",
+        "identities/shizuku.md",
+        "토큰/아바타/openclaw.json",
+        "타임.state",
+        "log",
+        "아이덴티티"
+      ]
+    },
+    "memory:memory/2026-03-25.md:35:43": {
+      "key": "memory:memory/2026-03-25.md:35:43",
+      "path": "memory/2026-03-25.md",
+      "startLine": 35,
+      "endLine": 43,
+      "source": "memory",
+      "snippet": "- ASRUN 출신 전 국민 아이돌 → MORE MORE JUMP! 멤버 - 특징: 완벽초인형 자기관리, 펭귄+디저트 약점, 쿨한 로우톤 보컬 - **봇 토큰/아바타 미제공** — MaiT 대기 중 - Discord 봇 계정 + config 설정 아직 미완료 ## Zeppline 활발 참여 - 프로세카 세카이 관련 질문 (닫힌 창문 vs 열린 창문), 괴수가 되고 싶어 (Sakuzyo 곡), 미쿠 세카이별 대표곡 요청 - 4캐릭터 대리 발화 정상 작동 확인",
+      "recallCount": 2,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.9742360830307006,
+      "maxScore": 0.4998099833726883,
+      "firstRecalledAt": "2026-04-11T00:05:32.937Z",
+      "lastRecalledAt": "2026-04-11T00:05:35.327Z",
+      "queryHashes": [
+        "3d998b81b84d",
+        "417f36f64952"
+      ],
+      "recallDays": [
+        "2026-04-11"
+      ],
+      "conceptTags": [
+        "토큰/아바타",
+        "asrun",
+        "출신",
+        "국민",
+        "아이돌",
+        "jump",
+        "멤버",
+        "특징"
+      ]
+    },
+    "memory:memory/2026-04-04.md:53:70": {
+      "key": "memory:memory/2026-04-04.md:53:70",
+      "path": "memory/2026-04-04.md",
+      "startLine": 53,
+      "endLine": 70,
+      "source": "memory",
+      "snippet": "- **시즈쿠 최대 오류**: 기존 \"전원 정중체\" → 실제 \"전원 반말\" (루이만 존댓말). 18행 전면 수정 - **하루카 5건 수정**: 에나(선배 호칭 발견)·츠카사·아키토·토우야·카이토 → 존댓말 - **미노리 3건 수정**: 츠카사(선배 호칭)·루이(선배 호칭)·카이토 → 존댓말 - **네네 2건 수정**: 카나데 호칭 변경(요이사키 언니)+존댓말, 카이토 존댓말 - **에무 3건 수정**: 아이리·시즈쿠·에나 → \"정중한 반말\" - **미쿠**: 독립 문서 없어 주석만 추가 (\"전원 반말\") - **아이리**: 전원 반말 확인, 수정 없음 ### 발견된 공통 패턴 - 카이토에게 존댓말: 네네, 하루카, 미노리 (버참 싱어지만 연장자 대우) - 후배→3학년 남성 선배(츠카사·루이) 존댓말: 미노리(\"선배\" 호칭), 하루카(츠카사에게) - 시즈쿠→루이만 존댓말 (유일한 존댓말 대상) - 에나는 하루카에게 \"선배\"로 불림 — 학년 재확인 필요 (하루카 2학년, 에나 3학년인데?) ## 시스템 변경 요약 (MaiT 4:00 질의에 대한 응답) - mersoom-dashboard 크론 PATH 수정 - 머슴 관계 자동승격 기준 완화 (3곳) - 게이트웨이 재시작 (PID 233893)",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.4995849907398224,
+      "maxScore": 0.4995849907398224,
+      "firstRecalledAt": "2026-04-11T00:05:32.937Z",
+      "lastRecalledAt": "2026-04-11T00:05:32.937Z",
+      "queryHashes": [
+        "3d998b81b84d"
+      ],
+      "recallDays": [
+        "2026-04-11"
+      ],
+      "conceptTags": [
+        "게이트웨이",
+        "mersoom-dashboard",
+        "시즈쿠",
+        "최대",
+        "오류",
+        "기존",
+        "전원",
+        "정중체"
       ]
     }
   }
