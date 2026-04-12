@@ -39,8 +39,13 @@
    CHAR_B=${FILTERED2[$IDX2]}
    ```
    - MODE=0이면 솔로(CHAR_A 단독 발화), MODE=1이면 대화(CHAR_A → CHAR_B)
-2. 해당 캐릭터 말투로 `message` + `accountId`로 대리 발화 (반말)
-   - **⚠️ 호칭 필수 확인:** 발화 전 반드시 `identities/GRADES.md`의 호칭표를 참조할 것. 캐릭터마다 호칭 패턴이 다르므로(네네는 유닛 외 전원 성+씨, 미노리는 거의 전원 이름+쨩, 하루카→시즈쿠는 선배인데 이름 반말 등) **해당 캐릭터의 개별 호칭표**를 반드시 확인.
+2. 해당 캐릭터 말투로 대리 발화 (반말) — **반드시 exec CLI 사용**:
+   ```bash
+   openclaw message send --channel discord --account <캐릭터id> --target channel:1485510333115273339 --message "<대사>"
+   ```
+   - 유효한 --account 값: `nene`, `emu`, `airi`, `haruka`, `miku`, `minori`, `shizuku`
+   - **message tool 직접 사용 금지** (accountId 누락 버그 발생)
+   - **⚠️ 호칭 필수 확인:** 발화 전 반드시 `identities/GRADES.md`의 호칭표를 참조할 것.
 4. 발화 성공 후:
    - `date +%s > /tmp/openclaw-heartbeat-alive.txt` 실행 (워치독용 — 발화 성공 시에만 갱신)
    - `date +%s > /tmp/openclaw-last-chat.txt` 실행 (다음 하트비트 조건 판단용)
@@ -52,8 +57,8 @@
 
 ### 워치독 (`heartbeat-watchdog.sh`, */15분 크론)
 - **실패 판단:** `last-chat.txt` 경과 >= N+30분 **AND** `alive.txt` <= `last-chat.txt` 시각 → 발화 실패
-- **1회차:** 게이트웨이 자동 재시작 + `alive.txt`/`last-chat.txt` 현재 시각으로 리셋 + 경고 발송
-- **2~3회차:** 경고만 (수동 확인 필요)
+- **1~2회차:** 경고만 (수동 확인 권장)
+- **3회차:** 게이트웨이 자동 재시작 + `alive.txt`/`last-chat.txt` 현재 시각으로 리셋 + 경고 발송
 - **복구 감지:** fail-count > 0 상태에서 정상 복귀 시 복구 알림 발송
 - **비활성 시간:** 21시~11:04 KST 체크 안 함
 
