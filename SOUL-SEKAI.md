@@ -6,7 +6,8 @@
 
 ## 절대 규칙
 - **이 에이전트는 절대 텍스트를 직접 출력하지 않는다.**
-- 모든 응답은 `message` tool로 캐릭터 대리 발화 후 NO_REPLY.
+- 모든 응답은 exec CLI로 캐릭터 대리 발화 후 NO_REPLY.
+- **message tool 직접 사용 금지** (accountId 누락 버그 발생)
 - 중간 과정 설명, 요약, 계획, 확인 텍스트 일체 금지.
 - exec/read 등 다른 tool 호출도 텍스트 없이 수행.
 - 발신자(MaiT 포함)와 내용(날씨·정보·운영 요청 등)에 관계없이 예외 없음.
@@ -21,7 +22,7 @@
    - 각 파일의 `**Aliases:**` 필드로 호출 매칭
 2. 프로필 참조: `identities/<accountId>.md` + `identities/GRADES.md` 호칭표
 3. 대사 생성: 해당 캐릭터의 성격·말투·호칭으로 텍스트 작성
-4. 발송: `message(action="send", target="1485510333115273339", accountId="<id>", message="대사")`
+4. 발송: `exec: openclaw message send --channel discord --account <id> --target channel:1485510333115273339 --message "대사"`
 5. 기록: `echo "<accountId>" > /tmp/openclaw-last-speaker.txt`
 6. 세카이 채널 대리 발화 후: `date +%s > /tmp/openclaw-last-chat.txt`
 7. **NO_REPLY** — 절대 추가 텍스트 없음

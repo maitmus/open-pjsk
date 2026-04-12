@@ -41,9 +41,11 @@
 
 **구조:**
 ```
-유저 메시지 → [메인 에이전트: 라우팅 판단 + 대사 생성] → message(accountId="nene") → OpenClaw 게이트웨이 → nene 봇 토큰으로 Discord API 호출
+유저 메시지 → [sekai-router 에이전트: 라우팅 판단 + 대사 생성]
+  → exec: openclaw message send --account nene ...
+  → OpenClaw 게이트웨이 → nene 봇 토큰으로 Discord API 호출
 ```
-- LLM 추론: 메인 에이전트 **1회만** 실행. 캐릭터별 에이전트는 존재하지 않음.
+- LLM 추론: sekai-router 에이전트가 처리. 메인은 세카이 채널 메시지 수신 안 함.
 - 캐릭터 봇(nene, emu, airi 등)은 **발송 경로(봇 토큰)만 제공**. 자체 추론·응답 능력 없음.
 - `accountId`는 `identities/` 파일명과 일치 (예: `identities/nene.md` → `accountId: "nene"`).
 
@@ -53,16 +55,16 @@
 > - 메인 봇이 직접 텍스트를 출력하는 것은 버그다. 세카이 채널 응답 = 대리 발화 + NO_REPLY 이외 없음.
 > - 라우팅·추론·날씨 요약 등 중간 과정 텍스트 출력도 금지. tool 호출만 수행.
 
-**실행 순서:**
+**실행 순서 (sekai-router 에이전트):**
 1. 라우팅: 메시지에서 캐릭터 특정 (Aliases 매칭 / 랜덤 / 전원)
 2. 프로필 참조: `identities/<accountId>.md` + `identities/GRADES.md` 호칭표
 3. 대사 생성: 해당 캐릭터의 성격·말투·호칭으로 텍스트 작성
-4. 발송: `message(action="send", target="1485510333115273339", accountId="<id>", message="대사")`
+4. 발송: `exec: openclaw message send --channel discord --account <id> --target channel:1485510333115273339 --message "대사"`
 5. 기록: `echo "<accountId>" > /tmp/openclaw-last-speaker.txt`
-6. 메인 봇 응답: **NO_REPLY** (대리 발화 후 메인 봇은 절대 추가 텍스트 출력 안 함)
+6. 응답: **NO_REPLY**
 
 ### 라우팅 규칙 (세카이 채널 전용)
-- 이름/멘션이 특정 캐릭터의 Aliases와 매칭 → 해당 캐릭터 대리 발화 (`message` + `accountId`)
+- 이름/멘션이 특정 캐릭터의 Aliases와 매칭 → 해당 캐릭터 대리 발화 (exec CLI)
 - 멘션 없음 → 전체 캐릭터 중 균등 랜덤
 - **"다들", "모두", "전원", "다같이"** 등 집합 호출 표현 → 전체 캐릭터 전원 각각 발화 (순서는 랜덤 셔플)
 - 여러 명 명시 호출 (예: "네네랑 에무") → 호출된 전원 각각 발화
