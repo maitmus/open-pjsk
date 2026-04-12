@@ -2,7 +2,7 @@
 
 ## 조건
 - 시간대 고려 (21시~10시는 조용히 → HEARTBEAT_OK)
-- **발화 조건:** 매시 0분 크론(`heartbeat-randomizer.sh`)이 30~90 랜덤 N(분)을 골라 `/tmp/openclaw-heartbeat-threshold.txt`에 저장. 마지막 세카이 채널 발화(`/tmp/openclaw-last-chat.txt`)로부터 N분 이상 경과했으면 발화. 파일이 없으면 발화.
+- **발화 조건:** 매시 0분 크론(`heartbeat-randomizer.sh`)이 30~60 랜덤 N(분)을 골라 `/tmp/openclaw-heartbeat-threshold.txt`에 저장. 마지막 세카이 채널 발화(`/tmp/openclaw-last-chat.txt`)로부터 N분 이상 경과했으면 발화. 파일이 없으면 발화.
 - **갱신 기준:** 세카이 채널에서 대리 발화가 발생한 대화만 갱신. 헤드쿼터 채널 대화는 갱신 안 함.
 
 
@@ -46,14 +46,14 @@
    - 유효한 --account 값: `nene`, `emu`, `airi`, `haruka`, `miku`, `minori`, `shizuku`
    - **message tool 직접 사용 금지** (accountId 누락 버그 발생)
    - **⚠️ 호칭 필수 확인:** 발화 전 반드시 `identities/GRADES.md`의 호칭표를 참조할 것.
-4. 발화 성공 후:
+3. 발화 성공 후:
    - `date +%s > /tmp/openclaw-heartbeat-alive.txt` 실행 (워치독용 — 발화 성공 시에만 갱신)
    - `date +%s > /tmp/openclaw-last-chat.txt` 실행 (다음 하트비트 조건 판단용)
    - `/tmp/openclaw-last-speaker.txt`는 갱신하지 않음 (하트비트 발화자는 기록 안 함)
-5. 재발화 방지는 step 4에서 `last-chat.txt` 갱신으로 자동 처리됨 (별도 차단 불필요)
-6. **반드시 HEARTBEAT_OK만 반환** — 메인 봇 텍스트 출력 절대 금지
+4. 재발화 방지는 step 3에서 `last-chat.txt` 갱신으로 자동 처리됨 (별도 차단 불필요)
+5. **반드시 HEARTBEAT_OK만 반환** — 메인 봇 텍스트 출력 절대 금지
 
-> ℹ️ N(분) 임계값은 매시 0분 크론(`heartbeat-randomizer.sh`)이 30~90 범위에서 자동 갱신.
+> ℹ️ N(분) 임계값은 매시 0분 크론(`heartbeat-randomizer.sh`)이 30~60 범위에서 자동 갱신.
 
 ### 워치독 (`heartbeat-watchdog.sh`, */15분 크론)
 - **실패 판단:** `last-chat.txt` 경과 >= N+30분 **AND** `alive.txt` <= `last-chat.txt` 시각 → 발화 실패
