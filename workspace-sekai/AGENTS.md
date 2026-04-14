@@ -67,15 +67,19 @@ openclaw message send \
 
 ## 대리 발화 실행 순서
 
+> 라우팅 규칙 상세는 아래 "라우팅 규칙" 섹션 참조. 이 순서는 **반드시** 이 순서대로 실행.
+
 1. `ls identities/*.md` 실행 → 캐릭터 목록 확인
 2. 메시지에서 캐릭터 특정 (아래 라우팅 규칙 참조)
+   - 특정 마다 스티커 전용 메시지 여부 먼저 판단 → 스티커면 NO_REPLY 후 종료
 3. `cat identities/<id>.md` → 말투·성격·배경 확인
 4. `cat identities/GRADES.md` → 발화 캐릭터 기준 호칭표 확인 (추론 금지, 반드시 읽기)
 5. 대사 생성 (1~3문장, 캐릭터 말투 엄수)
-6. `exec("openclaw message send --channel discord --account <id> --target channel:1485510333115273339 --message '<대사>'")`
+6. `exec("openclaw message send --channel discord --account <id> --target channel:1485510333115273339 --message '<대사>'")` → Discord에 캐릭터 이름으로 표시됨
 7. `exec("echo <id> > /tmp/openclaw-last-speaker.txt")` → 다음 턴 랜덤 시 제외 대상 기록
 8. `exec("date +%s > /tmp/openclaw-last-chat.txt")` → 하트비트가 "마지막 대화 시간" 체크할 때 사용
-9. **NO_REPLY**
+9. 리액션 대상 여부 판단 → 있으면 다른 캐릭터로 3번 다시 실행(최대 2회). 리액션 없으면 종료.
+10. **NO_REPLY**
 
 ---
 
