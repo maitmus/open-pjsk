@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-12T00:12:17.799Z",
+  "updatedAt": "2026-04-13T00:09:51.896Z",
   "entries": {
     "memory:memory/2026-04-10.md:23:46": {
       "key": "memory:memory/2026-04-10.md:23:46",
@@ -109,21 +109,23 @@
       "endLine": 43,
       "source": "memory",
       "snippet": "- ASRUN 출신 전 국민 아이돌 → MORE MORE JUMP! 멤버 - 특징: 완벽초인형 자기관리, 펭귄+디저트 약점, 쿨한 로우톤 보컬 - **봇 토큰/아바타 미제공** — MaiT 대기 중 - Discord 봇 계정 + config 설정 아직 미완료 ## Zeppline 활발 참여 - 프로세카 세카이 관련 질문 (닫힌 창문 vs 열린 창문), 괴수가 되고 싶어 (Sakuzyo 곡), 미쿠 세카이별 대표곡 요청 - 4캐릭터 대리 발화 정상 작동 확인",
-      "recallCount": 3,
+      "recallCount": 4,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 1.4642662614583968,
-      "maxScore": 0.4998099833726883,
+      "totalScore": 1.9675451159477233,
+      "maxScore": 0.5032788544893264,
       "firstRecalledAt": "2026-04-11T00:05:32.937Z",
-      "lastRecalledAt": "2026-04-12T00:12:05.086Z",
+      "lastRecalledAt": "2026-04-13T00:09:51.896Z",
       "queryHashes": [
         "3d998b81b84d",
         "417f36f64952",
-        "27d9aa447cd1"
+        "27d9aa447cd1",
+        "72c0c830b260"
       ],
       "recallDays": [
         "2026-04-11",
-        "2026-04-12"
+        "2026-04-12",
+        "2026-04-13"
       ],
       "conceptTags": [
         "토큰/아바타",
