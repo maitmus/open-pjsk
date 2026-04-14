@@ -1,5 +1,7 @@
 # HEARTBEAT.md
 
+> ⚠️ 이 파일의 코드블록은 의사코드가 아니라 **실제 실행할 셸 명령어**임. 에이전트는 이를 읽고 직접 exec으로 실행한다.
+
 ## 조건
 - 시간대 고려 (21시~10시는 조용히 → HEARTBEAT_OK)
 - **발화 조건:** 매시 0분 크론(`heartbeat-randomizer.sh`)이 30~60 랜덤 N(분)을 골라 `/tmp/openclaw-heartbeat-threshold.txt`에 저장. 마지막 세카이 채널 발화(`/tmp/openclaw-last-chat.txt`)로부터 N분 이상 경과했으면 발화. 파일이 없으면 발화.
