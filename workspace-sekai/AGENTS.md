@@ -37,6 +37,9 @@
 **message tool 사용 금지.** 반드시 `exec`으로 CLI 호출.
 이유: message tool로 보내면 `--account` 지정이 되지 않아 라우터 봇 자신이 발화함.
 
+> 발송 직전 자문: **"나는 지금 exec을 쓰려하는가, message tool을 쓰려하는가?"**
+> message tool → 즉시 중단. exec으로 다시 작성.
+
 ```bash
 openclaw message send \
   --channel discord \
