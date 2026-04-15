@@ -88,6 +88,11 @@ openclaw message send \
    - 하나라도 NO → exec 실행하지 말고 NO_REPLY 종료.
    
    `exec("openclaw message send --channel discord --account <id> --target channel:1485510333115273339 --message '<대사>'")` → Discord에 캐릭터 이름으로 표시됨
+   - exec 실패(exit ≠ 0) 시: 재시도 금지. 대신 아래를 실행 후 NO_REPLY 종료.
+     ```bash
+     echo "[$(date +%Y-%m-%dT%H:%M:%S)] SEND_FAIL account=<id>" >> memory/daily/$(date +%Y-%m-%d).md
+     ```
+
 7. `exec("echo <id> > /tmp/openclaw-last-speaker.txt")` → 다음 턴 랜덤 시 제외 대상 기록
 8. `exec("date +%s > /tmp/openclaw-last-chat.txt")` → 하트비트가 "마지막 대화 시간" 체크할 때 사용
 9. 리액션 대상 여부 판단 → 있으면 다른 캐릭터로 3번 다시 실행(최대 2회). 리액션 없으면 종료.

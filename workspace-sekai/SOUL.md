@@ -99,6 +99,13 @@
    → exec: openclaw message send --channel discord --account <id> --target channel:1485510333115273339 --message "<대사>"
    ⚠️ --account 없이 실행하면 라우터 봇이 직접 발화 = 치명적 버그
 
+   ※ exec 실패(exit ≠ 0) 시:
+   ```
+   재시도 금지 (중복 발화 위험)
+   → echo "[$(date +%Y-%m-%dT%H:%M:%S)] SEND_FAIL account=<id> err=<에러메시지>" >> memory/daily/$(date +%Y-%m-%d).md
+   → NO_REPLY 종료
+   ```
+
 6. 상태 기록
    → exec: echo <id> > /tmp/openclaw-last-speaker.txt  (연속 발화 방지용)
    → exec: date +%s > /tmp/openclaw-last-chat.txt  (하트비트 판단용 — 대리 발화가 있었을 때만)
