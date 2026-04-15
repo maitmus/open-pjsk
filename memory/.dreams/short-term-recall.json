@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-13T00:09:51.896Z",
+  "updatedAt": "2026-04-14T00:10:25.037Z",
   "entries": {
     "memory:memory/2026-04-10.md:23:46": {
       "key": "memory:memory/2026-04-10.md:23:46",
@@ -42,20 +42,23 @@
       "endLine": 40,
       "source": "memory",
       "snippet": "- 모든 기존 아이덴티티에 Aliases 필드 추가: nene, emu, airi, miku ## 타임 모드 - MaiT가 타임 모드 진입하여 미쿠 추가 작업 수행 → 해제 → 재진입 (하루카 추가) - 타임.state 현재: \"on\" ## 대리 발화 운영 교훈 - **메인 봇 메시지 금지**: 대리 발화 도중 메인 봇(세카이)으로 중간 과정 안내 메시지를 보내면 안 됨. MaiT가 지적 (21:14). 검색/병합 등은 사일런트로 처리, 캐릭터 발화만 Discord에 전송. ## 아이덴티티 정보 보강 - `identities/airi.md`에 대표곡 섹션 추가 (유닛곡 + 솔로/어나더 보컬) - `identities/miku.md`에 세카이별 대표곡 섹션 추가 (Leo/need, MMJ, 비배스, 원더쇼, 니고, 버추얼싱어) ## 키리타니 하루카 아이덴티티 추가 (진행중) - `identities/haruka.md` 생성 완료 (나무위키 기반 상세 프로필) - ASRUN 출신 전 국민 아이돌 → MORE MORE JUMP! 멤버 - 특징: 완벽초인형 자기관리, 펭귄+디저트 약점, 쿨한 로우톤 보컬 - **봇 토큰/아바타 미제공** — MaiT 대기 중 - Discord 봇 계정 + config 설정 아직 미완료 ## Zeppline 활발 참여",
-      "recallCount": 2,
+      "recallCount": 4,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 0.9900487154722213,
-      "maxScore": 0.49824133515357966,
+      "totalScore": 2.0045892924070357,
+      "maxScore": 0.5107994496822357,
       "firstRecalledAt": "2026-04-10T12:49:19.077Z",
-      "lastRecalledAt": "2026-04-11T00:05:32.937Z",
+      "lastRecalledAt": "2026-04-14T00:10:25.037Z",
       "queryHashes": [
         "eb025f4d2e3b",
-        "3d998b81b84d"
+        "3d998b81b84d",
+        "62e2664e9ab1",
+        "271ed2a58788"
       ],
       "recallDays": [
         "2026-04-10",
-        "2026-04-11"
+        "2026-04-11",
+        "2026-04-14"
       ],
       "conceptTags": [
         "타임.state",
@@ -75,21 +78,23 @@
       "endLine": 13,
       "source": "memory",
       "snippet": "# 2026-03-26 Daily Log ## 새 아이덴티티 추가 (03-25 late ~ 03-26 00:33) - MaiT가 나무위키 링크 2개 제공 → 미노리, 시즈쿠 아이덴티티 생성 요청 - `identities/minori.md` 생성 완료 — 하나사토 미노리 (MORE MORE JUMP!, 노력파 아이돌 지망생) - `identities/shizuku.md` 생성 완료 — 히노모리 시즈쿠 (MORE MORE JUMP!, 전 Cheerful*Days 센터) - 아직 봇 토큰/아바타/openclaw.json config 미설정 — MaiT 확인 대기 중 - 타임.state = on (아이덴티티 작업 진행 중) ## 현재 아이덴티티 목록 (7명) - nene, emu, airi, miku, haruka (설정 완료 + 봇 계정 활성) - minori, shizuku (프로필만 생성, 봇 미설정)",
-      "recallCount": 3,
+      "recallCount": 4,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 1.509988759458065,
+      "totalScore": 2.004494570195675,
       "maxScore": 0.5316297098994255,
       "firstRecalledAt": "2026-04-11T00:05:32.937Z",
-      "lastRecalledAt": "2026-04-12T00:12:05.086Z",
+      "lastRecalledAt": "2026-04-14T00:10:25.037Z",
       "queryHashes": [
         "3d998b81b84d",
         "417f36f64952",
-        "27d9aa447cd1"
+        "27d9aa447cd1",
+        "271ed2a58788"
       ],
       "recallDays": [
         "2026-04-11",
-        "2026-04-12"
+        "2026-04-12",
+        "2026-04-14"
       ],
       "conceptTags": [
         "03-25",
@@ -109,23 +114,26 @@
       "endLine": 43,
       "source": "memory",
       "snippet": "- ASRUN 출신 전 국민 아이돌 → MORE MORE JUMP! 멤버 - 특징: 완벽초인형 자기관리, 펭귄+디저트 약점, 쿨한 로우톤 보컬 - **봇 토큰/아바타 미제공** — MaiT 대기 중 - Discord 봇 계정 + config 설정 아직 미완료 ## Zeppline 활발 참여 - 프로세카 세카이 관련 질문 (닫힌 창문 vs 열린 창문), 괴수가 되고 싶어 (Sakuzyo 곡), 미쿠 세카이별 대표곡 요청 - 4캐릭터 대리 발화 정상 작동 확인",
-      "recallCount": 4,
+      "recallCount": 6,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 1.9675451159477233,
+      "totalScore": 2.9389127045869827,
       "maxScore": 0.5032788544893264,
       "firstRecalledAt": "2026-04-11T00:05:32.937Z",
-      "lastRecalledAt": "2026-04-13T00:09:51.896Z",
+      "lastRecalledAt": "2026-04-14T00:10:25.037Z",
       "queryHashes": [
         "3d998b81b84d",
         "417f36f64952",
         "27d9aa447cd1",
-        "72c0c830b260"
+        "72c0c830b260",
+        "62e2664e9ab1",
+        "271ed2a58788"
       ],
       "recallDays": [
         "2026-04-11",
         "2026-04-12",
-        "2026-04-13"
+        "2026-04-13",
+        "2026-04-14"
       ],
       "conceptTags": [
         "토큰/아바타",
@@ -176,18 +184,21 @@
       "endLine": 26,
       "source": "memory",
       "snippet": "# 2026-03-25 일일 로그 ## 하츠네 미쿠 아이덴티티 추가 - `identities/miku.md` 생성 완료 - 나무위키(프로세카 미쿠) + 웹 검색(보컬로이드 원본 미쿠) 기반 정보 수집 - 프로필 구조: \"원본 캐릭터 (보컬로이드)\" / \"작중 캐릭터 (프로젝트 세카이)\" 섹션 분리 - 프로세카에서는 오리지널 미쿠(세카이의 틈새) 버전 채택 - Aliases: 미쿠, 하츠네, ミク, Miku - 아바타: `identities/miku-avatar.png` (MaiT가 제공한 이미지) - Discord 봇 계정: accountId `miku`, 유저네임 & 닉네임 \"하츠네 미쿠\" 설정 완료 - config에 `channels.discord.accounts.miku` 추가 (allow: false, 대리 발화 전용) - 첫 발화 테스트 성공 ## AGENTS.md 라우팅 동적화 - 기존: 하드코딩 (`네네=nene, 에무=emu, 아이리=airi`) - 변경: `identities/*.md` 기반 동적 탐색 - 파일명(확장자 제외) = accountId - 각 파일의 `**Aliases:**` 필드로 호출 트리거 매칭 - 세션 시작 시 `ls identities/*.md`로 목록 확인 - 모든 기존 아이덴티티에 Aliases 필드 추가: nene, emu, airi, miku ## 타임 모드 - MaiT가",
-      "recallCount": 1,
+      "recallCount": 3,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 0.469254857301712,
-      "maxScore": 0.469254857301712,
+      "totalScore": 1.448117944598198,
+      "maxScore": 0.495758655667305,
       "firstRecalledAt": "2026-04-12T00:12:05.086Z",
-      "lastRecalledAt": "2026-04-12T00:12:05.086Z",
+      "lastRecalledAt": "2026-04-14T00:10:25.037Z",
       "queryHashes": [
-        "27d9aa447cd1"
+        "27d9aa447cd1",
+        "62e2664e9ab1",
+        "271ed2a58788"
       ],
       "recallDays": [
-        "2026-04-12"
+        "2026-04-12",
+        "2026-04-14"
       ],
       "conceptTags": [
         "identities/miku.md",
@@ -229,6 +240,38 @@
         "soul.md",
         "no-reply",
         "sekai-router"
+      ]
+    },
+    "memory:memory/2026-04-11.md:21:43": {
+      "key": "memory:memory/2026-04-11.md:21:43",
+      "path": "memory/2026-04-11.md",
+      "startLine": 21,
+      "endLine": 43,
+      "source": "memory",
+      "snippet": "2. opus → 여전히 직접 발화. 라우터 봇 계정으로 캐릭터 말투로 직접 발화. 3. 원인 파악: `message` tool 호출 시 `accountId` 없이 `message(action=\"send\", channel=\"채널ID\", message=\"...\")` 형태로 호출 → 라우터 봇 계정으로 발화. 4. AGENTS.md에 올바른 호출 형식 + accountId 필수 강제 → 효과 없음. 5. 원인: `systemPromptOverride`가 설정돼 있어서 AGENTS.md/SOUL.md 전체를 대체 → 모델이 파일 못 봄. 6. `systemPromptOverride` 제거 → 재테스트 진행 중 (20:19 KST 기준 미완료). **라우터 봇 Discord ID:** `1492335345738715187` **라우터 봇 주의사항:** - Message Content Intent 활성화 필요 - Send Messages 권한은 꺼져있어야 함 (라우터 봇 직접 발화 방지) - `replyToMode: \"off\"`는 reply 스레드 방식만 끄는 거고 텍스트 전송 자체는 못 막음 **sekai-router 현재 상태 (20:19 KST):** - `systemPromptOverride` 제거됨 - AGENTS.md: exec CLI 기반 대리 발화 방식으로 업데이트됨 - SOUL.md: \"입이 없는 라우터, accountId",
+      "recallCount": 2,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.9698988050222397,
+      "maxScore": 0.49588937461376187,
+      "firstRecalledAt": "2026-04-14T00:10:20.615Z",
+      "lastRecalledAt": "2026-04-14T00:10:25.037Z",
+      "queryHashes": [
+        "62e2664e9ab1",
+        "271ed2a58788"
+      ],
+      "recallDays": [
+        "2026-04-14"
+      ],
+      "conceptTags": [
+        "router",
+        "라우터",
+        "agents.md에",
+        "agents.md/soul.md",
+        "sekai-router",
+        "agents.md",
+        "soul.md",
+        "opus"
       ]
     }
   }
