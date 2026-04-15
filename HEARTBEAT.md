@@ -2,6 +2,21 @@
 
 > ⚠️ 이 파일의 코드블록은 의사코드가 아니라 **실제 실행할 셸 명령어**임. 에이전트는 이를 읽고 직접 exec으로 실행한다.
 
+## 텍스트 출력 규칙
+
+| 허용 | 금지 |
+|---|---|
+| exec (셸 명령어) | 계획 설명 |
+| Read (파일 읽기) | 실행 결과 요약 |
+| `HEARTBEAT_OK` (단독) | "발화했습니다" 등 확인 텍스트 |
+| | HEARTBEAT_OK 외 모든 텍스트 |
+
+**`HEARTBEAT_OK`는 단독으로만. 앞뒤에 다른 텍스트 붙이는 것 금지.**
+
+> 매 턴 종료 직전 자문: **"나는 지금 HEARTBEAT_OK 이외의 텍스트를 출력하려 하는가?"**
+> YES → 즉시 중단. HEARTBEAT_OK만 출력.
+> NO → HEARTBEAT_OK로 종료.
+
 ## 조건
 - 시간대 고려 (21시~10시는 조용히 → HEARTBEAT_OK)
 - **발화 조건:** 매시 0분 크론(`heartbeat-randomizer.sh`)이 30~60 랜덤 N(분)을 골라 `/tmp/openclaw-heartbeat-threshold.txt`에 저장. 마지막 세카이 채널 발화(`/tmp/openclaw-last-chat.txt`)로부터 N분 이상 경과했으면 발화. 파일이 없으면 발화.
@@ -42,12 +57,30 @@
    ```
    - MODE=0이면 솔로(CHAR_A 단독 발화), MODE=1이면 대화(CHAR_A → CHAR_B)
 2. 해당 캐릭터 말투로 대리 발화 (반말) — **반드시 exec CLI 사용**:
+
+   **발송 전 체크 (3가지 모두 YES일 때만 exec 실행):**
+   ```
+   ✔ --account 값이 유효값 목록에 있는가?
+      (nene / emu / airi / haruka / miku / minori / shizuku)
+   ✔ --target이 channel:1485510333115273339인가?
+   ✔ --message에 실제 대사가 들어있는가?
+
+   하나라도 NO → exec 실행하지 말고 HEARTBEAT_OK 종료.
+   ```
+
    ```bash
    openclaw message send --channel discord --account <캐릭터id> --target channel:1485510333115273339 --message "<대사>"
    ```
    - 유효한 --account 값: `nene`, `emu`, `airi`, `haruka`, `miku`, `minori`, `shizuku`
    - **message tool 직접 사용 금지** (accountId 누락 버그 발생)
    - **⚠️ 호칭 필수 확인:** 발화 전 반드시 `identities/GRADES.md`의 호칭표를 참조할 것.
+
+   **exec 실패(exit ≠ 0) 시:**
+   ```
+   재시도 금지 (중복 발화 위험)
+   → echo "[$(date +%Y-%m-%dT%H:%M:%S)] HB_SEND_FAIL account=<id>" >> memory/daily/$(date +%Y-%m-%d).md
+   → HEARTBEAT_OK 종료
+   ```
 3. 발화 성공 후:
    - `date +%s > /tmp/openclaw-heartbeat-alive.txt` 실행 (워치독용 — 발화 성공 시에만 갱신)
    - `date +%s > /tmp/openclaw-last-chat.txt` 실행 (다음 하트비트 조건 판단용)
