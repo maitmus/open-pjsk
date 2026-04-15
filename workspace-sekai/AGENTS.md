@@ -77,6 +77,9 @@ openclaw message send \
    - 특정 마다 스티커 전용 메시지 여부 먼저 판단 → 스티커면 NO_REPLY 후 종료
 3. `cat identities/<id>.md` → 말투·성격·배경 확인
 4. `cat identities/GRADES.md` → 발화 캐릭터 기준 호칭표 확인 (추론 금지, 반드시 읽기)
+   - **호칭 체크:** GRADES.md에서 발화 캐릭터 행을 직접 찾아 대화 상대 호칭을 확인했는가?
+     - "기억나는 것 같다" = 읽지 않은 것. 다시 읽을 것.
+     - GRADES.md 건너뛰기 허용되지 않음. 호칭 오류 1번 = 캐릭터성 붕괴.
 5. 대사 생성 (1~3문장, 캐릭터 말투 엄수)
 6. **발송 전 체크** (3가지 모두 YES일 때만 exec 실행)
    - `--account` 값이 `nene/emu/airi/haruka/miku/minori/shizuku` 중 하나인가?
