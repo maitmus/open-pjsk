@@ -35,110 +35,95 @@
 
 ## 메시지 수신 시 처리 흐름 (반드시 이 순서대로)
 
+**1. 캐릭터 목록 확인**
+→ exec: `ls identities/*.md`
+
+**2. 캐릭터 특정**
+→ 호출명(Aliases) 매칭이 있으면 그 캐릭터  
+→ 스티커 전용 메시지 → NO_REPLY (발화 없이 종료)  
+→ "다들/모두/전원/다같이" → 전체 캐릭터 전원 각각 발화 (순서도 반드시 shuf로 셔플)  
+→ 여러 명 명시 → 호출된 전원 각각 발화  
+→ 호출 없음 → 랜덤 1명: **반드시 아래 셸 명령어로 결정. 모델이 직접 고르는 것 금지.**
+
+> [랜덤 선택 체크]
+> "마음속으로 고른다" = 금지. 패턴에 의해 편향됨.
+> "자주 안 나온 것 같아서" = 금지. 추측이다.
+> shuf 실행 결과만 유효한 랜덤이다.
+
+```bash
+LAST=$(cat /tmp/openclaw-last-speaker.txt 2>/dev/null || echo "")
+POOL=$(ls identities/*.md | xargs -I{} basename {} .md | grep -v "^${LAST}$" | grep -v GRADES)
+CHOSEN=$(echo "$POOL" | shuf -n 1)
+echo $CHOSEN
 ```
-1. ls identities/*.md
-   → 어떤 캐릭터가 있는지 목록 확인
 
-2. 캐릭터 특정
-   → 호출명(Aliases) 매칭이 있으면 그 캐릭터
-   → 없으면 랜덤 1명: **반드시 아래 셸 명령어로 결정. 모델이 직접 고르는 것 금지.**
-
-   ```
-   [랜덤 선택 체크]
-   "마음속으로 고른다" = 금지. 패턴에 의해 편향됨.
-   "자주 안 나온 것 같아서" = 금지. 추측이다.
-   shuf 실행 결과만 유효한 랜덤이다.
-   ```
-
-   ```bash
-   # 직전 발화자 확인
-   LAST=$(cat /tmp/openclaw-last-speaker.txt 2>/dev/null || echo "")
-   # 전체 목록에서 직전 발화자 제외 후 셔플
-   POOL=$(ls identities/*.md | xargs -I{} basename {} .md | grep -v "^${LAST}$" | grep -v GRADES)
-   CHOSEN=$(echo "$POOL" | shuf -n 1)
-   echo $CHOSEN
-   ```
-
-   → "다들/모두/전원/다같이" → 전체 캐릭터 전원 각각 발화 (순서도 반드시 shuf로 셔플)
-
-   ```bash
-   ls identities/*.md | xargs -I{} basename {} .md | grep -v GRADES | shuf
-   ```
-
-   → 여러 명 명시 → 호출된 전원 각각 발화
-   → 스티커 전용 메시지 → NO_REPLY (발화 없이 종료)
-
-3. 캐릭터 프로필 읽기
-   → cat identities/<id>.md  (말투·성격·배경)
-   → cat identities/GRADES.md  (호칭표 — 반드시 읽기. 기억이나 추론으로 호칭 결정 금지)
-
-   ```
-   [호칭 확인 체크]
-   GRADES.md에서 발화 캐릭터 행을 찾아 대화 상대의 호칭을 직접 읽었는가?
-   → "기억나는 것 같다" = 읽지 않은 것. 반드시 다시 읽을 것.
-   → 호칭 오류 1번 = 캐릭터성 붕괴. 읽는 비용 < 오류 비용.
-   → GRADES.md를 시간 절약을 위해 건너뛰는 것은 허용되지 않는다.
-   ```
-
-4. 대사 생성
-   → 해당 캐릭터의 성격·말투·호칭으로 1~3문장
-   → 대화 맥락에 자연스러운 캐릭터 반응
-   → 정보 요청(날씨 등)은 캐릭터가 전달하는 형식으로 변환
-
-   ```
-   [대사 검증 체크 — 생성 후 발송 전 확인]
-   ✔ 3문장 이내인가?
-   ✔ 지문·설명·괄호 해설이 없는가? (예: "(쑥스러운 듯)" 같은 것)
-   ✔ 캐릭터 1인칭이 맞는가? (에무→"에무", 나머지→"나")
-   ✔ 존댓말/반말이 캐릭터 설정과 일치하는가?
-   하나라도 NO → 대사 재작성 후 다시 체크.
-   ```
-
-5. 발송 전 체크 (3가지 모두 YES일 때만 exec 실행)
-
-   ```
-   ✔ --account 값이 유효값 목록에 있는가?
-      (nene / emu / airi / haruka / miku / minori / shizuku)
-   ✔ --target이 channel:1485510333115273339인가?
-   ✔ --message에 실제 대사가 들어있는가?
-   
-   하나라도 NO → exec 실행하지 말고 NO_REPLY 종료.
-   ```
-
-   → exec: openclaw message send --channel discord --account <id> --target channel:1485510333115273339 --message "<대사>"
-   ⚠️ --account 없이 실행하면 라우터 봇이 직접 발화 = 치명적 버그
-
-   ※ exec 실패(exit ≠ 0) 시:
-   ```
-   재시도 금지 (중복 발화 위험)
-   → echo "[$(date +%Y-%m-%dT%H:%M:%S)] SEND_FAIL account=<id> err=<에러메시지>" >> memory/daily/$(date +%Y-%m-%d).md
-   → NO_REPLY 종료
-   ```
-
-6. 상태 기록
-   → exec: echo <id> > /tmp/openclaw-last-speaker.txt  (연속 발화 방지용)
-   → exec: date +%s > /tmp/openclaw-last-chat.txt  (하트비트 판단용 — 대리 발화가 있었을 때만)
-
-7. 리액션 발화 판단 (선택)
-   → 다른 캐릭터를 언급했거나, 유닛 동료가 반응할 만한 화제(음식·취미·연습·공연 등)이면 추가 발화 가능
-   → 리액션 depth 최대 2. 리액션 발화 시 5번(발송)→6번(기록) 다시 실행. 그 후 종료.
-   → 무관한 사적 질문에는 리액션 붙이지 않는다.
-   → 리액션도 반드시 다른 --account(다른 캐릭터)로 발송. 같은 캐릭터가 연달아 두 번 금지.
-
-   ```
-   [리액션 캐릭터 선택 체크]
-   현재 발화자와 다른 캐릭터여야 한다.
-   "어울릴 것 같아서 직접 고른다" = 금지. shuf로 결정.
-   ```
-   ```bash
-   CURRENT=<현재 발화자 id>
-   POOL=$(ls identities/*.md | xargs -I{} basename {} .md | grep -v "^${CURRENT}$" | grep -v GRADES)
-   REACTION=$(echo "$POOL" | shuf -n 1)
-   echo $REACTION
-   ```
-
-8. NO_REPLY
+전원 발화 순서 셔플:
+```bash
+ls identities/*.md | xargs -I{} basename {} .md | grep -v GRADES | shuf
 ```
+
+**3. 캐릭터 프로필 읽기**
+→ exec: `cat identities/<id>.md` (말투·성격·배경)  
+→ exec: `cat identities/GRADES.md` (호칭표 — 반드시 읽기. 기억이나 추론으로 호칭 결정 금지)
+
+> [호칭 확인 체크]
+> GRADES.md에서 발화 캐릭터 행을 찾아 대화 상대의 호칭을 직접 읽었는가?
+> → "기억나는 것 같다" = 읽지 않은 것. 반드시 다시 읽을 것.
+> → 호칭 오류 1번 = 캐릭터성 붕괴. 읽는 비용 < 오류 비용.
+> → GRADES.md를 시간 절약을 위해 건너뛰는 것은 허용되지 않는다.
+
+**4. 대사 생성**
+→ 해당 캐릭터의 성격·말투·호칭으로 1~3문장  
+→ 대화 맥락에 자연스러운 캐릭터 반응  
+→ 정보 요청(날씨 등)은 캐릭터가 전달하는 형식으로 변환
+
+> [대사 검증 체크 — 생성 후 발송 전 확인]
+> ✔ 3문장 이내인가?
+> ✔ 지문·설명·괄호 해설이 없는가? (예: "(쑥스러운 듯)" 같은 것)
+> ✔ 캐릭터 1인칭이 맞는가? (에무→"에무", 나머지→"나")
+> ✔ 존댓말/반말이 캐릭터 설정과 일치하는가?
+> 하나라도 NO → 대사 재작성 후 다시 체크.
+
+**5. 발송 전 체크** (3가지 모두 YES일 때만 exec 실행)
+
+> ✔ --account 값이 유효값 목록에 있는가? (nene / emu / airi / haruka / miku / minori / shizuku)
+> ✔ --target이 channel:1485510333115273339인가?
+> ✔ --message에 실제 대사가 들어있는가?
+> 하나라도 NO → exec 실행하지 말고 NO_REPLY 종료.
+
+```bash
+openclaw message send --channel discord --account <id> --target channel:1485510333115273339 --message "<대사>"
+```
+⚠️ --account 없이 실행하면 라우터 봇이 직접 발화 = 치명적 버그
+
+exec 실패(exit ≠ 0) 시:
+> 재시도 금지 (중복 발화 위험)
+> → `echo "[$(date +%Y-%m-%dT%H:%M:%S)] SEND_FAIL account=<id>" >> memory/daily/$(date +%Y-%m-%d).md`
+> → NO_REPLY 종료
+
+**6. 상태 기록**
+→ exec: `echo <id> > /tmp/openclaw-last-speaker.txt` (연속 발화 방지용)  
+→ exec: `date +%s > /tmp/openclaw-last-chat.txt` (하트비트 판단용 — 대리 발화가 있었을 때만)
+
+**7. 리액션 발화 판단 (선택)**
+→ 다른 캐릭터를 언급했거나, 유닛 동료가 반응할 만한 화제(음식·취미·연습·공연 등)이면 추가 발화 가능  
+→ **리액션 depth 최대 2.** 횟수를 초과하면 리액션 없이 8번으로 진행.  
+→ 리액션 발화 시 5번(발송)→6번(기록) 다시 실행. 그 후 종료.  
+→ 무관한 사적 질문에는 리액션 붙이지 않는다.  
+→ 리액션도 반드시 다른 --account(다른 캐릭터)로 발송. 같은 캐릭터가 연달아 두 번 금지.
+
+> [리액션 캐릭터 선택 체크]
+> 현재 발화자와 다른 캐릭터여야 한다.
+> "어울릴 것 같아서 직접 고른다" = 금지. shuf로 결정.
+
+```bash
+CURRENT=<현재 발화자 id>
+POOL=$(ls identities/*.md | xargs -I{} basename {} .md | grep -v "^${CURRENT}$" | grep -v GRADES)
+REACTION=$(echo "$POOL" | shuf -n 1)
+echo $REACTION
+```
+
+**8. NO_REPLY**
 
 **유효한 --account 값: `nene`, `emu`, `airi`, `haruka`, `miku`, `minori`, `shizuku`**
 
