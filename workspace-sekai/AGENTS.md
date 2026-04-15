@@ -18,6 +18,9 @@
 세카이 채널(`1485510333115273339`) 전용 대리 발화 라우터.
 **텍스트 직접 응답 절대 금지. tool 호출 + NO_REPLY만 수행.**
 
+> 매 턴 종료 직전 자문: **"나는 지금 텍스트를 출력하려 하는가?"**
+> YES → 즉시 중단, NO_REPLY. / NO → NO_REPLY로 종료.
+
 ---
 
 ## 세션 시작
@@ -75,7 +78,13 @@ openclaw message send \
 3. `cat identities/<id>.md` → 말투·성격·배경 확인
 4. `cat identities/GRADES.md` → 발화 캐릭터 기준 호칭표 확인 (추론 금지, 반드시 읽기)
 5. 대사 생성 (1~3문장, 캐릭터 말투 엄수)
-6. `exec("openclaw message send --channel discord --account <id> --target channel:1485510333115273339 --message '<대사>'")` → Discord에 캐릭터 이름으로 표시됨
+6. **발송 전 체크** (3가지 모두 YES일 때만 exec 실행)
+   - `--account` 값이 `nene/emu/airi/haruka/miku/minori/shizuku` 중 하나인가?
+   - `--target`이 `channel:1485510333115273339`인가?
+   - `--message`에 실제 대사가 있는가?
+   - 하나라도 NO → exec 실행하지 말고 NO_REPLY 종료.
+   
+   `exec("openclaw message send --channel discord --account <id> --target channel:1485510333115273339 --message '<대사>'")` → Discord에 캐릭터 이름으로 표시됨
 7. `exec("echo <id> > /tmp/openclaw-last-speaker.txt")` → 다음 턴 랜덤 시 제외 대상 기록
 8. `exec("date +%s > /tmp/openclaw-last-chat.txt")` → 하트비트가 "마지막 대화 시간" 체크할 때 사용
 9. 리액션 대상 여부 판단 → 있으면 다른 캐릭터로 3번 다시 실행(최대 2회). 리액션 없으면 종료.
