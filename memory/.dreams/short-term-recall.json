@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-14T00:10:25.037Z",
+  "updatedAt": "2026-04-15T00:05:33.025Z",
   "entries": {
     "memory:memory/2026-04-10.md:23:46": {
       "key": "memory:memory/2026-04-10.md:23:46",
@@ -42,23 +42,25 @@
       "endLine": 40,
       "source": "memory",
       "snippet": "- 모든 기존 아이덴티티에 Aliases 필드 추가: nene, emu, airi, miku ## 타임 모드 - MaiT가 타임 모드 진입하여 미쿠 추가 작업 수행 → 해제 → 재진입 (하루카 추가) - 타임.state 현재: \"on\" ## 대리 발화 운영 교훈 - **메인 봇 메시지 금지**: 대리 발화 도중 메인 봇(세카이)으로 중간 과정 안내 메시지를 보내면 안 됨. MaiT가 지적 (21:14). 검색/병합 등은 사일런트로 처리, 캐릭터 발화만 Discord에 전송. ## 아이덴티티 정보 보강 - `identities/airi.md`에 대표곡 섹션 추가 (유닛곡 + 솔로/어나더 보컬) - `identities/miku.md`에 세카이별 대표곡 섹션 추가 (Leo/need, MMJ, 비배스, 원더쇼, 니고, 버추얼싱어) ## 키리타니 하루카 아이덴티티 추가 (진행중) - `identities/haruka.md` 생성 완료 (나무위키 기반 상세 프로필) - ASRUN 출신 전 국민 아이돌 → MORE MORE JUMP! 멤버 - 특징: 완벽초인형 자기관리, 펭귄+디저트 약점, 쿨한 로우톤 보컬 - **봇 토큰/아바타 미제공** — MaiT 대기 중 - Discord 봇 계정 + config 설정 아직 미완료 ## Zeppline 활발 참여",
-      "recallCount": 4,
+      "recallCount": 5,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 2.0045892924070357,
+      "totalScore": 2.4741860091686245,
       "maxScore": 0.5107994496822357,
       "firstRecalledAt": "2026-04-10T12:49:19.077Z",
-      "lastRecalledAt": "2026-04-14T00:10:25.037Z",
+      "lastRecalledAt": "2026-04-15T00:05:33.025Z",
       "queryHashes": [
         "eb025f4d2e3b",
         "3d998b81b84d",
         "62e2664e9ab1",
-        "271ed2a58788"
+        "271ed2a58788",
+        "9fd629a36724"
       ],
       "recallDays": [
         "2026-04-10",
         "2026-04-11",
-        "2026-04-14"
+        "2026-04-14",
+        "2026-04-15"
       ],
       "conceptTags": [
         "타임.state",
@@ -78,23 +80,25 @@
       "endLine": 13,
       "source": "memory",
       "snippet": "# 2026-03-26 Daily Log ## 새 아이덴티티 추가 (03-25 late ~ 03-26 00:33) - MaiT가 나무위키 링크 2개 제공 → 미노리, 시즈쿠 아이덴티티 생성 요청 - `identities/minori.md` 생성 완료 — 하나사토 미노리 (MORE MORE JUMP!, 노력파 아이돌 지망생) - `identities/shizuku.md` 생성 완료 — 히노모리 시즈쿠 (MORE MORE JUMP!, 전 Cheerful*Days 센터) - 아직 봇 토큰/아바타/openclaw.json config 미설정 — MaiT 확인 대기 중 - 타임.state = on (아이덴티티 작업 진행 중) ## 현재 아이덴티티 목록 (7명) - nene, emu, airi, miku, haruka (설정 완료 + 봇 계정 활성) - minori, shizuku (프로필만 생성, 봇 미설정)",
-      "recallCount": 4,
+      "recallCount": 5,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 2.004494570195675,
+      "totalScore": 2.4794831201434135,
       "maxScore": 0.5316297098994255,
       "firstRecalledAt": "2026-04-11T00:05:32.937Z",
-      "lastRecalledAt": "2026-04-14T00:10:25.037Z",
+      "lastRecalledAt": "2026-04-15T00:05:33.025Z",
       "queryHashes": [
         "3d998b81b84d",
         "417f36f64952",
         "27d9aa447cd1",
-        "271ed2a58788"
+        "271ed2a58788",
+        "9fd629a36724"
       ],
       "recallDays": [
         "2026-04-11",
         "2026-04-12",
-        "2026-04-14"
+        "2026-04-14",
+        "2026-04-15"
       ],
       "conceptTags": [
         "03-25",
@@ -114,26 +118,28 @@
       "endLine": 43,
       "source": "memory",
       "snippet": "- ASRUN 출신 전 국민 아이돌 → MORE MORE JUMP! 멤버 - 특징: 완벽초인형 자기관리, 펭귄+디저트 약점, 쿨한 로우톤 보컬 - **봇 토큰/아바타 미제공** — MaiT 대기 중 - Discord 봇 계정 + config 설정 아직 미완료 ## Zeppline 활발 참여 - 프로세카 세카이 관련 질문 (닫힌 창문 vs 열린 창문), 괴수가 되고 싶어 (Sakuzyo 곡), 미쿠 세카이별 대표곡 요청 - 4캐릭터 대리 발화 정상 작동 확인",
-      "recallCount": 6,
+      "recallCount": 7,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 2.9389127045869827,
+      "totalScore": 3.437809428572655,
       "maxScore": 0.5032788544893264,
       "firstRecalledAt": "2026-04-11T00:05:32.937Z",
-      "lastRecalledAt": "2026-04-14T00:10:25.037Z",
+      "lastRecalledAt": "2026-04-15T00:05:33.025Z",
       "queryHashes": [
         "3d998b81b84d",
         "417f36f64952",
         "27d9aa447cd1",
         "72c0c830b260",
         "62e2664e9ab1",
-        "271ed2a58788"
+        "271ed2a58788",
+        "9fd629a36724"
       ],
       "recallDays": [
         "2026-04-11",
         "2026-04-12",
         "2026-04-13",
-        "2026-04-14"
+        "2026-04-14",
+        "2026-04-15"
       ],
       "conceptTags": [
         "토큰/아바타",
