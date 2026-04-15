@@ -37,8 +37,23 @@
 
 2. 캐릭터 특정
    → 호출명(Aliases) 매칭이 있으면 그 캐릭터
-   → 없으면 랜덤 1명 (단, /tmp/openclaw-last-speaker.txt에 있는 직전 발화자는 제외 — 같은 캐릭터 연속 발화 방지)
-   → "다들/모두/전원/다같이" → 전체 캐릭터 전원 각각 발화
+   → 없으면 랜덤 1명: 아래 명령어로 결정 (모델 자체 판단 금지)
+
+   ```bash
+   # 직전 발화자 확인
+   LAST=$(cat /tmp/openclaw-last-speaker.txt 2>/dev/null || echo "")
+   # 전체 목록에서 직전 발화자 제외 후 셔플
+   POOL=$(ls identities/*.md | xargs -I{} basename {} .md | grep -v "^${LAST}$" | grep -v GRADES)
+   CHOSEN=$(echo "$POOL" | shuf -n 1)
+   echo $CHOSEN
+   ```
+
+   → "다들/모두/전원/다같이" → 전체 캐릭터 전원 각각 발화 (순서도 shuf로 셔플)
+
+   ```bash
+   ls identities/*.md | xargs -I{} basename {} .md | grep -v GRADES | shuf
+   ```
+
    → 여러 명 명시 → 호출된 전원 각각 발화
    → 스티커 전용 메시지 → NO_REPLY (발화 없이 종료)
 
