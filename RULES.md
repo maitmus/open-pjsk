@@ -15,27 +15,8 @@
   → 원인 분석: 모델 판단 오류 / 절차 누락 / 지시 모호성 중 어느 것?
   → memory/harness-log.md에 항목 추가 (날짜·에이전트·실수유형·원인·하네스내용)
   → 해당 지점(SOUL.md / AGENTS.md / HEARTBEAT.md)에 하네스 삽입
-  → 변경사항 git push
-```
-
-**하네스 유형 선택 기준:**
-- 모델이 "해도 되겠지"라고 판단한 경우 → **금지 패턴 명시** ("X = 금지. 이유.")
-- 절차를 건너뛴 경우 → **강제 체크포인트** (체크 통과 전 다음 단계 금지)
-- 결과 확인 안 한 경우 → **결과 검증 분기** (성공/실패별 처리 명시)
-- 모델이 직접 판단한 경우 → **산술적 강제** (셸 명령어로 대체)
-
-**기록 위치:** `memory/harness-log.md` — 모든 하네스 추가 이력 보관. sekai-router는 `workspace-sekai/memory/harness-log.md`, main은 `workspace/memory/harness-log.md`.
-
-## 🛡️ 하네스 엔지니어링 (운영 중 실수 → 구조 강화)
-
-**운영 중 실수가 발생하면 반드시 아래 절차를 따른다.**
-
-```
-실수 발생
-  → 원인 분석: 모델 판단 오류 / 절차 누락 / 지시 모호성 중 어느 것?
-  → memory/harness-log.md에 항목 추가 (날짜·에이전트·실수유형·원인·하네스내용)
-  → 해당 지점(SOUL.md / AGENTS.md / HEARTBEAT.md)에 하네스 삽입
-  → workspace-sekai 변경 → workspace/workspace-sekai/ 동기화 → git push
+  → workspace-sekai 변경 시: workspace/workspace-sekai/ 동기화 → git push
+  → main 변경 시: git push
 ```
 
 **하네스 유형 선택 기준:**
@@ -44,7 +25,7 @@
 - 결과를 확인 안 한 경우 → **결과 검증 분기** (성공/실패별 처리 명시)
 - 모델이 직접 판단한 경우 → **산술적 강제** (셸 명령어로 대체)
 
-**기록 위치: `memory/harness-log.md`** — 모든 하네스 추가 이력 보관.
+**기록 위치:** `memory/harness-log.md` — 모든 하네스 추가 이력 보관. sekai-router는 `workspace-sekai/memory/harness-log.md`, main은 `workspace/memory/harness-log.md`.
 
 ---
 
