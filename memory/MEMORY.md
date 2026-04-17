@@ -13,6 +13,7 @@
 
 ## 운영 교훈
 - 하트비트: target=discord, to=채널ID 필수. "last"만으론 no-target 에러.
+- **bash 8진수 버그**: `date +%s%N | tail -c N` 방식으로 인덱스 계산 시 앞자리 0인 숫자(예: `096`)를 8진수로 해석 → 산술 오류 → 캐릭터 선택 실패·빈 변수로 이상 발화. **반드시 `shuf -i 0-N -n 1` 사용.**
 - Discord 봇 아바타 변경: 2번/시간 안전 라인.
 - 나무위키 web_fetch: 상단 네비게이션이 길어 maxChars 40000+ 필요.
 - MEMORY.md는 심볼릭 링크 (workspace/MEMORY.md → memory/MEMORY.md). IDENTITY.md는 일반 파일 (OpenClaw 자동 생성).
