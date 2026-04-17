@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-17T00:05:56.051Z",
+  "updatedAt": "2026-04-17T11:37:34.993Z",
   "entries": {
     "memory:memory/2026-04-10.md:23:46": {
       "key": "memory:memory/2026-04-10.md:23:46",
@@ -232,18 +232,20 @@
       "endLine": 23,
       "source": "memory",
       "snippet": "# 2026-04-11 일일 로그 ## 데일리 리뷰 - daily-review: 09:00 KST 게이트웨이 재시작으로 누락 → 09:20 수동 실행. - daily-weather: 정상 (09:05). ## 세카이 라우터 분리 작업 **문제:** 세카이 채널에서 main 봇이 의사결정 텍스트를 직접 출력하는 버그 재발. **원인:** sonnet 모델이 SOUL.md NO_REPLY 지시를 안정적으로 따르지 못함. **해결책: sekai-router 에이전트 분리** - `sekai-router` 에이전트 신설 (`workspace-sekai`, sonnet → opus로 전환) - bindings: `discord peer=channel:1485510333115273339` → `sekai-router` - main은 헤드쿼터 등 나머지 채널만 담당 - `daily-weather` 크론: agentId → `sekai-router`로 변경 - main 하트비트 비활성화 (every=0m), sekai-router가 하트비트 담당 - Discord `sekai-router` 봇 계정 추가 (별도 봇 토큰, `replyToMode: \"off\"` 설정) **연속 발생 문제:** 1. sonnet → NO_REPLY 안 지킴 → opus 전환 2. opus → 여전히 직접 발화. 라우터 봇 계정으로 캐릭터 말투로 직접 발화. 3.",
-      "recallCount": 1,
+      "recallCount": 2,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 0.47194064557552334,
-      "maxScore": 0.47194064557552334,
+      "totalScore": 0.9944804549217223,
+      "maxScore": 0.522539809346199,
       "firstRecalledAt": "2026-04-12T00:12:17.799Z",
-      "lastRecalledAt": "2026-04-12T00:12:17.799Z",
+      "lastRecalledAt": "2026-04-17T11:37:34.993Z",
       "queryHashes": [
-        "a37894789917"
+        "a37894789917",
+        "8848bb3cbf17"
       ],
       "recallDays": [
-        "2026-04-12"
+        "2026-04-12",
+        "2026-04-17"
       ],
       "conceptTags": [
         "router",
@@ -263,19 +265,20 @@
       "endLine": 43,
       "source": "memory",
       "snippet": "2. opus → 여전히 직접 발화. 라우터 봇 계정으로 캐릭터 말투로 직접 발화. 3. 원인 파악: `message` tool 호출 시 `accountId` 없이 `message(action=\"send\", channel=\"채널ID\", message=\"...\")` 형태로 호출 → 라우터 봇 계정으로 발화. 4. AGENTS.md에 올바른 호출 형식 + accountId 필수 강제 → 효과 없음. 5. 원인: `systemPromptOverride`가 설정돼 있어서 AGENTS.md/SOUL.md 전체를 대체 → 모델이 파일 못 봄. 6. `systemPromptOverride` 제거 → 재테스트 진행 중 (20:19 KST 기준 미완료). **라우터 봇 Discord ID:** `1492335345738715187` **라우터 봇 주의사항:** - Message Content Intent 활성화 필요 - Send Messages 권한은 꺼져있어야 함 (라우터 봇 직접 발화 방지) - `replyToMode: \"off\"`는 reply 스레드 방식만 끄는 거고 텍스트 전송 자체는 못 막음 **sekai-router 현재 상태 (20:19 KST):** - `systemPromptOverride` 제거됨 - AGENTS.md: exec CLI 기반 대리 발화 방식으로 업데이트됨 - SOUL.md: \"입이 없는 라우터, accountId",
-      "recallCount": 5,
+      "recallCount": 6,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 2.4461087018251417,
-      "maxScore": 0.5165808945894241,
+      "totalScore": 2.976108492910862,
+      "maxScore": 0.52999979108572,
       "firstRecalledAt": "2026-04-14T00:10:20.615Z",
-      "lastRecalledAt": "2026-04-17T00:05:56.051Z",
+      "lastRecalledAt": "2026-04-17T11:37:34.993Z",
       "queryHashes": [
         "62e2664e9ab1",
         "271ed2a58788",
         "69bc9d9599de",
         "5bc1edffb7c9",
-        "3220c9e8ea99"
+        "3220c9e8ea99",
+        "8848bb3cbf17"
       ],
       "recallDays": [
         "2026-04-14",
@@ -353,6 +356,68 @@
         "agents.md",
         "no-reply",
         "agents.defaults"
+      ]
+    },
+    "memory:memory/daily/2026-04-11.md:1:24": {
+      "key": "memory:memory/daily/2026-04-11.md:1:24",
+      "path": "memory/daily/2026-04-11.md",
+      "startLine": 1,
+      "endLine": 24,
+      "source": "memory",
+      "snippet": "# 2026-04-11 일일 로그 ## 데일리 리뷰 - daily-review: 09:00 KST 게이트웨이 재시작으로 누락 → 09:20 수동 실행. - daily-weather: 정상 (09:05). ## 세카이 라우터 분리 작업 **문제:** 세카이 채널에서 main 봇이 의사결정 텍스트를 직접 출력하는 버그 재발. **원인:** sonnet 모델이 SOUL.md NO_REPLY 지시를 안정적으로 따르지 못함. **해결책: sekai-router 에이전트 분리** - `sekai-router` 에이전트 신설 (`workspace-sekai`, sonnet) - bindings: `discord peer=channel:1485510333115273339` → `sekai-router` - main은 헤드쿼터 등 나머지 채널만 담당 - `daily-weather` 크론: agentId → `sekai-router`로 변경 - main 하트비트 비활성화 (every=0m), sekai-router가 하트비트 담당 - SOUL.md 강화: \"텍스트 출력 = 시스템 오류\" 프레이밍 **결과:** 1회 테스트 통과 (대리 발화 + NO_REPLY 정상). **잔여 리스크:** sonnet 특성상 컨텍스트 누적 시 재발 가능. 재발 시 sekai-router를 opus로 전환 예정. ## 게이트웨이 관련 - 게이트웨이가 09:00",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.5142768740653991,
+      "maxScore": 0.5142768740653991,
+      "firstRecalledAt": "2026-04-17T11:37:34.993Z",
+      "lastRecalledAt": "2026-04-17T11:37:34.993Z",
+      "queryHashes": [
+        "8848bb3cbf17"
+      ],
+      "recallDays": [
+        "2026-04-17"
+      ],
+      "conceptTags": [
+        "router",
+        "라우터",
+        "게이트웨이",
+        "daily-review",
+        "daily-weather",
+        "soul.md",
+        "no-reply",
+        "sekai-router"
+      ]
+    },
+    "memory:memory/reviews/2026-04-17.md:20:33": {
+      "key": "memory:memory/reviews/2026-04-17.md:20:33",
+      "path": "memory/reviews/2026-04-17.md",
+      "startLine": 20,
+      "endLine": 33,
+      "source": "memory",
+      "snippet": "- **f1577c14**: 마지막 실행들 모두 `status=error`, 원인 = \"Request timed out before a response was generated\" (API 타임아웃). 해당 잡은 이미 삭제된 상태이므로 현재 운영 영향 없음. 에러 해소 여부: 해당 잡이 비활성이므로 재발 없음. - **daf0041a**: 최근 실행 `status=ok`. 그 이전 1건 에러(\"Edit failed\", AI 과부하)는 일시적이었으며 이미 복구됨. - **49d64a90, 8b79fce5**: 최근 실행 모두 `status=ok`. ## 4. 개선사항 탐색 ### a. HEARTBEAT.md / AGENTS.md / SOUL.md / RULES.md 불일치 - **RULES.md 중복 섹션 발견**: 하네스 엔지니어링 섹션(`🛡️ 하네스 엔지니어링`)이 내용 차이를 두고 두 번 반복됨. 첫 번째는 `git push`만, 두 번째는 `workspace-sekai 동기화 → git push`로 더 상세. P2.5(파일 단일 책임, 중복 금지) 위반. - **조치**: 두 섹션을 하나로 통합, workspace-sekai/main 분기 명시하여 수정 완료. - HEARTBEAT.md, AGENTS.md, SOUL.md: 실제 운영 절차와 불일치 항목 없음. heartbeat 조건·캐릭터 목록·발화 대상 채널 모두 현행",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.4984845608472824,
+      "maxScore": 0.4984845608472824,
+      "firstRecalledAt": "2026-04-17T11:37:34.993Z",
+      "lastRecalledAt": "2026-04-17T11:37:34.993Z",
+      "queryHashes": [
+        "8848bb3cbf17"
+      ],
+      "recallDays": [
+        "2026-04-17"
+      ],
+      "conceptTags": [
+        "heartbeat.md",
+        "agents.md",
+        "soul.md",
+        "rules.md",
+        "workspace-sekai",
+        "p2.5",
+        "workspace-sekai/main",
+        "f1577c14"
       ]
     }
   }
