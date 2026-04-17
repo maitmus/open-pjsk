@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-16T00:10:16.734Z",
+  "updatedAt": "2026-04-17T00:05:56.051Z",
   "entries": {
     "memory:memory/2026-04-10.md:23:46": {
       "key": "memory:memory/2026-04-10.md:23:46",
@@ -80,25 +80,27 @@
       "endLine": 13,
       "source": "memory",
       "snippet": "# 2026-03-26 Daily Log ## 새 아이덴티티 추가 (03-25 late ~ 03-26 00:33) - MaiT가 나무위키 링크 2개 제공 → 미노리, 시즈쿠 아이덴티티 생성 요청 - `identities/minori.md` 생성 완료 — 하나사토 미노리 (MORE MORE JUMP!, 노력파 아이돌 지망생) - `identities/shizuku.md` 생성 완료 — 히노모리 시즈쿠 (MORE MORE JUMP!, 전 Cheerful*Days 센터) - 아직 봇 토큰/아바타/openclaw.json config 미설정 — MaiT 확인 대기 중 - 타임.state = on (아이덴티티 작업 진행 중) ## 현재 아이덴티티 목록 (7명) - nene, emu, airi, miku, haruka (설정 완료 + 봇 계정 활성) - minori, shizuku (프로필만 생성, 봇 미설정)",
-      "recallCount": 5,
+      "recallCount": 6,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 2.4794831201434135,
+      "totalScore": 2.9472609952092172,
       "maxScore": 0.5316297098994255,
       "firstRecalledAt": "2026-04-11T00:05:32.937Z",
-      "lastRecalledAt": "2026-04-15T00:05:33.025Z",
+      "lastRecalledAt": "2026-04-17T00:05:56.051Z",
       "queryHashes": [
         "3d998b81b84d",
         "417f36f64952",
         "27d9aa447cd1",
         "271ed2a58788",
-        "9fd629a36724"
+        "9fd629a36724",
+        "3220c9e8ea99"
       ],
       "recallDays": [
         "2026-04-11",
         "2026-04-12",
         "2026-04-14",
-        "2026-04-15"
+        "2026-04-15",
+        "2026-04-17"
       ],
       "conceptTags": [
         "03-25",
@@ -118,13 +120,13 @@
       "endLine": 43,
       "source": "memory",
       "snippet": "- ASRUN 출신 전 국민 아이돌 → MORE MORE JUMP! 멤버 - 특징: 완벽초인형 자기관리, 펭귄+디저트 약점, 쿨한 로우톤 보컬 - **봇 토큰/아바타 미제공** — MaiT 대기 중 - Discord 봇 계정 + config 설정 아직 미완료 ## Zeppline 활발 참여 - 프로세카 세카이 관련 질문 (닫힌 창문 vs 열린 창문), 괴수가 되고 싶어 (Sakuzyo 곡), 미쿠 세카이별 대표곡 요청 - 4캐릭터 대리 발화 정상 작동 확인",
-      "recallCount": 8,
+      "recallCount": 9,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 3.9200113654136657,
+      "totalScore": 4.400796276330948,
       "maxScore": 0.5032788544893264,
       "firstRecalledAt": "2026-04-11T00:05:32.937Z",
-      "lastRecalledAt": "2026-04-16T00:10:01.855Z",
+      "lastRecalledAt": "2026-04-17T00:05:56.051Z",
       "queryHashes": [
         "3d998b81b84d",
         "417f36f64952",
@@ -133,7 +135,8 @@
         "62e2664e9ab1",
         "271ed2a58788",
         "9fd629a36724",
-        "9cfd81584266"
+        "9cfd81584266",
+        "3220c9e8ea99"
       ],
       "recallDays": [
         "2026-04-11",
@@ -141,7 +144,8 @@
         "2026-04-13",
         "2026-04-14",
         "2026-04-15",
-        "2026-04-16"
+        "2026-04-16",
+        "2026-04-17"
       ],
       "conceptTags": [
         "토큰/아바타",
@@ -192,21 +196,23 @@
       "endLine": 26,
       "source": "memory",
       "snippet": "# 2026-03-25 일일 로그 ## 하츠네 미쿠 아이덴티티 추가 - `identities/miku.md` 생성 완료 - 나무위키(프로세카 미쿠) + 웹 검색(보컬로이드 원본 미쿠) 기반 정보 수집 - 프로필 구조: \"원본 캐릭터 (보컬로이드)\" / \"작중 캐릭터 (프로젝트 세카이)\" 섹션 분리 - 프로세카에서는 오리지널 미쿠(세카이의 틈새) 버전 채택 - Aliases: 미쿠, 하츠네, ミク, Miku - 아바타: `identities/miku-avatar.png` (MaiT가 제공한 이미지) - Discord 봇 계정: accountId `miku`, 유저네임 & 닉네임 \"하츠네 미쿠\" 설정 완료 - config에 `channels.discord.accounts.miku` 추가 (allow: false, 대리 발화 전용) - 첫 발화 테스트 성공 ## AGENTS.md 라우팅 동적화 - 기존: 하드코딩 (`네네=nene, 에무=emu, 아이리=airi`) - 변경: `identities/*.md` 기반 동적 탐색 - 파일명(확장자 제외) = accountId - 각 파일의 `**Aliases:**` 필드로 호출 트리거 매칭 - 세션 시작 시 `ls identities/*.md`로 목록 확인 - 모든 기존 아이덴티티에 Aliases 필드 추가: nene, emu, airi, miku ## 타임 모드 - MaiT가",
-      "recallCount": 3,
+      "recallCount": 4,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 1.448117944598198,
+      "totalScore": 1.9149608433246612,
       "maxScore": 0.495758655667305,
       "firstRecalledAt": "2026-04-12T00:12:05.086Z",
-      "lastRecalledAt": "2026-04-14T00:10:25.037Z",
+      "lastRecalledAt": "2026-04-17T00:05:56.051Z",
       "queryHashes": [
         "27d9aa447cd1",
         "62e2664e9ab1",
-        "271ed2a58788"
+        "271ed2a58788",
+        "3220c9e8ea99"
       ],
       "recallDays": [
         "2026-04-12",
-        "2026-04-14"
+        "2026-04-14",
+        "2026-04-17"
       ],
       "conceptTags": [
         "identities/miku.md",
@@ -257,21 +263,24 @@
       "endLine": 43,
       "source": "memory",
       "snippet": "2. opus → 여전히 직접 발화. 라우터 봇 계정으로 캐릭터 말투로 직접 발화. 3. 원인 파악: `message` tool 호출 시 `accountId` 없이 `message(action=\"send\", channel=\"채널ID\", message=\"...\")` 형태로 호출 → 라우터 봇 계정으로 발화. 4. AGENTS.md에 올바른 호출 형식 + accountId 필수 강제 → 효과 없음. 5. 원인: `systemPromptOverride`가 설정돼 있어서 AGENTS.md/SOUL.md 전체를 대체 → 모델이 파일 못 봄. 6. `systemPromptOverride` 제거 → 재테스트 진행 중 (20:19 KST 기준 미완료). **라우터 봇 Discord ID:** `1492335345738715187` **라우터 봇 주의사항:** - Message Content Intent 활성화 필요 - Send Messages 권한은 꺼져있어야 함 (라우터 봇 직접 발화 방지) - `replyToMode: \"off\"`는 reply 스레드 방식만 끄는 거고 텍스트 전송 자체는 못 막음 **sekai-router 현재 상태 (20:19 KST):** - `systemPromptOverride` 제거됨 - AGENTS.md: exec CLI 기반 대리 발화 방식으로 업데이트됨 - SOUL.md: \"입이 없는 라우터, accountId",
-      "recallCount": 3,
+      "recallCount": 5,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 1.4635861307382583,
-      "maxScore": 0.49588937461376187,
+      "totalScore": 2.4461087018251417,
+      "maxScore": 0.5165808945894241,
       "firstRecalledAt": "2026-04-14T00:10:20.615Z",
-      "lastRecalledAt": "2026-04-16T00:10:16.734Z",
+      "lastRecalledAt": "2026-04-17T00:05:56.051Z",
       "queryHashes": [
         "62e2664e9ab1",
         "271ed2a58788",
-        "69bc9d9599de"
+        "69bc9d9599de",
+        "5bc1edffb7c9",
+        "3220c9e8ea99"
       ],
       "recallDays": [
         "2026-04-14",
-        "2026-04-16"
+        "2026-04-16",
+        "2026-04-17"
       ],
       "conceptTags": [
         "router",
@@ -313,6 +322,37 @@
         "sekai-router",
         "rules.md",
         "p2.3"
+      ]
+    },
+    "memory:memory/daily/2026-03-25.md:1:29": {
+      "key": "memory:memory/daily/2026-03-25.md:1:29",
+      "path": "memory/daily/2026-03-25.md",
+      "startLine": 1,
+      "endLine": 29,
+      "source": "memory",
+      "snippet": "# 2026-03-25 (수) ## 아이리 아이덴티티 추가 - 모모이 아이리(桃井 愛莉) 아이덴티티 생성: `identities/airi.md` - 나무위키에서 캐릭터 정보 수집 (maxChars=50000) - Discord 봇 토큰 추가: accounts.airi - 아바타 설정: `identities/airi-avatar.png` + Discord API로 봇 아바타 적용 - `allow: false` 설정으로 채널 직접 수신 차단 - AGENTS.md에 아이리 라우팅 추가 (accountId: `airi`) - RULES.md에 새 아이덴티티 추가 절차 명시 ## 멀티 캐릭터 대리 발화 기능 - 여러 명 호출 시 전원 각각 대리 발화하도록 AGENTS.md 업데이트 - 테스트 성공: \"네네랑 아이리는 지금 뭐하고 있어?\" → 둘 다 반응 ## 모델 전환 시도 - opus → sonnet 전환 시도 - sonnet에서 대리 발화 라우팅이 작동하지 않음 (NO_REPLY 반복) - 원인: sonnet이 복잡한 라우팅 지시를 안정적으로 따르지 못함 - opus로 복원 ## 세션 사용량 최적화 - contextTokens: 200000 설정 (agents.defaults) - compaction mode: default - 기존 세션에는 소급 적용 안됨 → 세션 리셋 필요 - 세션 리셋 + 매일 자동 리셋 방식으로 결정 ##",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.4938926041126251,
+      "maxScore": 0.4938926041126251,
+      "firstRecalledAt": "2026-04-17T00:05:56.051Z",
+      "lastRecalledAt": "2026-04-17T00:05:56.051Z",
+      "queryHashes": [
+        "3220c9e8ea99"
+      ],
+      "recallDays": [
+        "2026-04-17"
+      ],
+      "conceptTags": [
+        "identities/airi.md",
+        "accounts.airi",
+        "identities/airi-avatar.png",
+        "agents.md에",
+        "rules.md에",
+        "agents.md",
+        "no-reply",
+        "agents.defaults"
       ]
     }
   }
