@@ -47,12 +47,12 @@
    CHARS=(nene emu airi haruka miku minori shizuku)
    FILTERED=()
    for c in "${CHARS[@]}"; do [ "$c" != "$LAST" ] && FILTERED+=("$c"); done
-   IDX=$(( $(date +%s%N | tail -c 4) % ${#FILTERED[@]} ))
+   IDX=$(shuf -i 0-$(( ${#FILTERED[@]} - 1 )) -n 1)
    CHAR_A=${FILTERED[$IDX]}
    # 대화 모드일 때 두 번째 캐릭터 선택
    FILTERED2=()
    for c in "${FILTERED[@]}"; do [ "$c" != "$CHAR_A" ] && FILTERED2+=("$c"); done
-   IDX2=$(( ($(date +%s%N | tail -c 4) + 1) % ${#FILTERED2[@]} ))
+   IDX2=$(shuf -i 0-$(( ${#FILTERED2[@]} - 1 )) -n 1)
    CHAR_B=${FILTERED2[$IDX2]}
    ```
    - MODE=0이면 솔로(CHAR_A 단독 발화), MODE=1이면 대화(CHAR_A → CHAR_B)
