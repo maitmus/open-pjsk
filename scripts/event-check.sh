@@ -45,5 +45,5 @@ fi
 openclaw agent \
   -m "$PROMPT" \
   --agent main \
-  --channel discord \
+  --local \
   --timeout 300
