@@ -477,7 +477,7 @@ public class GradesMatrix {
 - **Anthropic Java SDK** (`com.anthropic:anthropic-java`)
 - **Redis** (대화 컨텍스트 캐싱, 옵션이지만 권장)
 - **Gradle Kotlin DSL**
-- **GitLab** (회사에서 자체 호스팅 GitLab 사용 - 사이드 프로젝트도 동일하게 사용 가능)
+- **GitHub** — 현재 `maitmus/open-pjsk` 리포지토리 사용. 회사 인프라(자체 호스팅 GitLab 등)는 사용 금지
 
 ### 프로젝트 구조
 
@@ -750,13 +750,13 @@ Spring Boot 라우터 채널과 OpenClaw 라우터 채널의 메시지당 비용
 
 ## 코드 작성 시 따를 원칙
 
-1. **Lombok 사용 OK**: `@RequiredArgsConstructor`, `@Slf4j` 등 회사 코드 스타일 따라감
+1. **Lombok 사용 OK**: `@RequiredArgsConstructor`, `@Slf4j` 등 활용 가능
 2. **Records 활용**: Java 24니까 DTO는 `record` 우선
 3. **Sealed types**: 라우팅 결과 같은 닫힌 enum은 sealed interface 검토
 4. **테스트 우선**: 라우팅 규칙 8개 시나리오(기명/무기명/멀티턴/전환/다중/전원/리액션/NO_REPLY)는 단위 테스트로 작성
 5. **에러 처리**: Anthropic API 실패, Discord API 실패 시 graceful degradation
 6. **로깅**: 라우팅 결정마다 reasoning 로그 (디버깅 + 비용 분석)
-7. **Spring Boot 표준**: `@Service`, `@Component`, `@ConfigurationProperties` 등 회사 코드 패턴
+7. **Spring Boot 표준**: `@Service`, `@Component`, `@ConfigurationProperties` 등 표준 패턴 사용
 
 ## 시작 시 첫 작업
 
@@ -814,8 +814,8 @@ Spring Boot 라우터 채널과 OpenClaw 라우터 채널의 메시지당 비용
 - **명확한 단계 보고**: 각 단계 시작/완료 시 한 줄 요약
 - **결정 필요 시 질문**: 라이브러리 선택, 디자인 결정 등
 - **막혔을 때**: 에러 메시지 + 시도한 것 보여주고 도움 요청
-- **MaiT의 회사 환경**: Java 8 (Spring Boot 백엔드)이지만 사이드 프로젝트는 Java 17+ (주로 24)
-- **MaiT의 인프라**: 자체 호스팅 GitLab (회사용), Pi 5 (개인 OpenClaw 운영), 회사 맥 M3 Pro 18GB
+- **MaiT의 사이드 프로젝트 환경**: Java 17+ (주로 24)
+- **MaiT의 개인 인프라**: GitHub (`maitmus/open-pjsk` 등), Pi 5 (OpenClaw 운영). **회사 인프라(자체 호스팅 GitLab, 회사 장비 등)는 본 프로젝트에서 사용 금지**
 
 ## 참고 자료
 
