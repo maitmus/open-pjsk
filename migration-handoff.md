@@ -51,7 +51,7 @@ OpenClaw 2026.4.22로 라우터 봇 + 세카이 봇 + 7개 캐릭터 봇 운영 
   ├─ emu     (오오토리 에무, Wonderlands × Showtime)
   ├─ haruka  (키리타니 하루카, MORE MORE JUMP!)
   ├─ miku    (하츠네 미쿠, Virtual Singer)
-  ├─ minori  (하나사토 미노리, Leo/need)
+  ├─ minori  (하나사토 미노리, MORE MORE JUMP!)
   ├─ nene    (쿠사나기 네네, Wonderlands × Showtime)
   └─ shizuku (히노모리 시즈쿠, MORE MORE JUMP!)
 ```
@@ -121,7 +121,7 @@ OpenClaw 2026.4.22로 라우터 봇 + 세카이 봇 + 7개 캐릭터 봇 운영 
 - `emu.md` — 오오토리 에무 (Wonderlands × Showtime, "원더호이~!")
 - `haruka.md` — 키리타니 하루카 (MORE MORE JUMP!)
 - `miku.md` — 하츠네 미쿠 (Virtual Singer)
-- `minori.md` — 하나사토 미노리 (Leo/need)
+- `minori.md` — 하나사토 미노리 (MORE MORE JUMP!)
 - `nene.md` — 쿠사나기 네네 (Wonderlands × Showtime)
 - `shizuku.md` — 히노모리 시즈쿠 (MORE MORE JUMP!)
 
