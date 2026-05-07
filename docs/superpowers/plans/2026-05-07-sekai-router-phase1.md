@@ -16,14 +16,14 @@
 
 **Spec 참조:** `migration-handoff.md` (commit 8e3167d 이후) — 특히 라우팅 규칙(line 78~107), 운영 매커니즘(typing/sekai-all-speak/last-speaker), 8개 검증 시나리오.
 
-**프로젝트 위치:** 별도 GitHub 리포(`maitmus/sekai-router`)에 생성. 페르소나 파일은 OpenClaw 워크스페이스(`~/.openclaw/workspace/identities/`)를 환경변수로 참조 — Spring Boot가 이 경로의 파일을 read-only로 사용.
+**프로젝트 위치:** 별도 GitHub 리포(`maitmus/open-pjsk-spring-migration`)에 생성. 페르소나 파일은 OpenClaw 워크스페이스(`~/.openclaw/workspace/identities/`)를 환경변수로 참조 — Spring Boot가 이 경로의 파일을 read-only로 사용.
 
 ---
 
 ## File Structure
 
 ```
-sekai-router/
+open-pjsk-spring-migration/
 ├── README.md
 ├── .gitignore
 ├── .env.example
@@ -84,21 +84,21 @@ sekai-router/
 ## Task 1: GitHub 리포 초기화
 
 **Files:**
-- Create: `~/projects/sekai-router/README.md`
-- Create: `~/projects/sekai-router/.gitignore`
+- Create: `~/projects/open-pjsk-spring-migration/README.md`
+- Create: `~/projects/open-pjsk-spring-migration/.gitignore`
 
-**Manual prerequisite:** 사용자가 GitHub에서 `maitmus/sekai-router` 리포 생성 (Private/Public 자유). 빈 리포여야 함.
+**Manual prerequisite:** 사용자가 GitHub에서 `maitmus/open-pjsk-spring-migration` 리포 생성 (Private/Public 자유). 빈 리포여야 함.
 
 - [ ] **Step 1: 로컬 디렉토리 생성**
 
 ```bash
-mkdir -p ~/projects/sekai-router && cd ~/projects/sekai-router
+mkdir -p ~/projects/open-pjsk-spring-migration && cd ~/projects/open-pjsk-spring-migration
 ```
 
 - [ ] **Step 2: README.md 작성**
 
 ```markdown
-# sekai-router
+# open-pjsk-spring-migration
 
 OpenClaw 기반 sekai-router 에이전트의 Spring Boot 마이그레이션. Discord 메시지를 받아 Project Sekai 캐릭터로 라우팅 + 대리 발화.
 
@@ -150,7 +150,7 @@ HELP.md
 git init -b main
 git add README.md .gitignore
 git commit -m "init: 리포지토리 초기화"
-git remote add origin git@github.com:maitmus/sekai-router.git
+git remote add origin git@github.com:maitmus/open-pjsk-spring-migration.git
 git push -u origin main
 ```
 
@@ -168,7 +168,7 @@ Expected: GitHub에 `main` 브랜치로 푸시 성공.
 - [ ] **Step 1: Gradle wrapper 생성**
 
 ```bash
-cd ~/projects/sekai-router
+cd ~/projects/open-pjsk-spring-migration
 gradle wrapper --gradle-version 8.10
 ```
 
@@ -179,7 +179,7 @@ Expected: `gradlew`, `gradlew.bat`, `gradle/wrapper/gradle-wrapper.jar`, `gradle
 - [ ] **Step 2: settings.gradle.kts 작성**
 
 ```kotlin
-rootProject.name = "sekai-router"
+rootProject.name = "open-pjsk-spring-migration"
 ```
 
 - [ ] **Step 3: build.gradle.kts 작성**
@@ -285,7 +285,7 @@ public class SekaiRouterApplication {
 ```yaml
 spring:
   application:
-    name: sekai-router
+    name: open-pjsk-spring-migration
   main:
     web-application-type: none
 
@@ -2145,7 +2145,7 @@ git commit -m "feat: RouterEventListener — 메시지 수신 → 라우팅 → 
 
 - [ ] **Step 2: .env 작성**
 
-`~/projects/sekai-router/.env`:
+`~/projects/open-pjsk-spring-migration/.env`:
 ```env
 ANTHROPIC_API_KEY=sk-ant-...
 ANTHROPIC_MODEL=claude-haiku-4-5
@@ -2167,7 +2167,7 @@ PERSONA_DIR=/home/maitmus/.openclaw/workspace/identities
 - [ ] **Step 3: 환경변수 로드 후 실행**
 
 ```bash
-cd ~/projects/sekai-router
+cd ~/projects/open-pjsk-spring-migration
 export $(cat .env | xargs)
 ./gradlew bootRun
 ```
@@ -2176,7 +2176,7 @@ Expected: 8개 JDA 인스턴스 모두 CONNECTED, "Initial persona load — 7 en
 
 - [ ] **Step 4: 시나리오 1~8 수동 검증**
 
-테스트 채널에 다음 메시지 순서대로 입력 후 응답 확인 — 각 시나리오 결과를 `~/projects/sekai-router/scenario-log.md`에 기록:
+테스트 채널에 다음 메시지 순서대로 입력 후 응답 확인 — 각 시나리오 결과를 `~/projects/open-pjsk-spring-migration/scenario-log.md`에 기록:
 
 ```
 시나리오 1 (기명 단발): "에무, 안녕"
@@ -2217,7 +2217,7 @@ Expected: 8개 JDA 인스턴스 모두 CONNECTED, "Initial persona load — 7 en
 - [ ] **Step 5: scenario-log.md 작성 + commit (테스트 결과 기록)**
 
 ```bash
-cd ~/projects/sekai-router
+cd ~/projects/open-pjsk-spring-migration
 # scenario-log.md 작성 (위 시나리오 결과 채움)
 git add scenario-log.md
 git commit -m "test: Phase 1 시나리오 1~8 수동 검증 결과 기록"
@@ -2247,7 +2247,7 @@ OpenClaw가 에이전트별 분리 통계를 직접 제공하지 않으면 다�
 
 - [ ] **Step 3: baseline.md 작성**
 
-`~/projects/sekai-router/baseline.md`:
+`~/projects/open-pjsk-spring-migration/baseline.md`:
 ```markdown
 # OpenClaw Baseline 비용 (마이그레이션 전)
 
@@ -2271,7 +2271,7 @@ OpenClaw가 에이전트별 분리 통계를 직접 제공하지 않으면 다�
 - [ ] **Step 4: Commit**
 
 ```bash
-cd ~/projects/sekai-router
+cd ~/projects/open-pjsk-spring-migration
 git add baseline.md
 git commit -m "docs: OpenClaw baseline 비용 측정 기록 (Phase 2 비교 기준점)"
 git push origin main
@@ -2282,16 +2282,16 @@ git push origin main
 ## Task 17: Phase 1 완료 보고서
 
 **Files:**
-- Create: `~/projects/sekai-router/phase1-report.md`
+- Create: `~/projects/open-pjsk-spring-migration/phase1-report.md`
 
 - [ ] **Step 1: 보고서 작성**
 
-`~/projects/sekai-router/phase1-report.md`:
+`~/projects/open-pjsk-spring-migration/phase1-report.md`:
 ```markdown
 ## Phase 1 완료 보고
 
 ### 완료된 작업
-- 별도 GitHub 리포(`maitmus/sekai-router`) 생성
+- 별도 GitHub 리포(`maitmus/open-pjsk-spring-migration`) 생성
 - Spring Boot 3.4 + JDA 5 + Anthropic SDK 의존성 셋업
 - 라우터 봇 + 7개 캐릭터 봇 JDA 인스턴스 (총 8개)
 - PersonaLoader/Watcher (mtime 감지로 캐시 무효화)
@@ -2325,7 +2325,7 @@ git push origin main
 - [ ] **Step 2: Commit + push**
 
 ```bash
-cd ~/projects/sekai-router
+cd ~/projects/open-pjsk-spring-migration
 git add phase1-report.md
 git commit -m "docs: Phase 1 완료 보고서"
 git push origin main
