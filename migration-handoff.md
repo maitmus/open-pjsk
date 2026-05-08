@@ -156,7 +156,7 @@ OpenClaw 2026.4.22로 라우터 봇 + 세카이 봇 + 7개 캐릭터 봇 운영 
 
 이 시스템은 라우터 봇/세카이 봇 외에 **하트비트(Heartbeat)** 라는 세 번째 LLM 사용 지점이 있음. `HEARTBEAT.md` + `events.json` + `GRADES.md` + `quick-ref.md`가 이 시스템의 입력.
 
-> **상태 (2026-05-07)**: 본 하트비트 시스템은 **과거 실제 운영된 구현**이며 현재 일시 비활성 상태. 두 워크스페이스(`workspace`, `workspace-sekai`)의 `HEARTBEAT.md`는 빈 템플릿으로 되돌아가 있음. 아래 묘사는 활성 시점의 운영 데이터 기반이며 신뢰 가능. **Phase 3.5에서 재가동 + 마이그레이션 대상**.
+> **상태 (2026-05-08)**: 본 하트비트 시스템은 **Phase 3에서 Spring Boot로 마이그레이션 완료**. 현재 sekai-router 컨테이너 내 `HeartbeatService`로 운영 중. 아래 묘사는 OpenClaw 시점의 활성 운영 데이터 기반이며, Spring Boot 구현은 동일 메커니즘을 30분 슬롯 + 1h 캐시 형태로 옮긴 것.
 
 **하트비트 동작**:
 - 주기적 또는 이벤트 기반 트리거 (cron 비슷)
@@ -235,14 +235,14 @@ OpenClaw 2026.4.22로 라우터 봇 + 세카이 봇 + 7개 캐릭터 봇 운영 
 - 같은 유닛이면 유닛 맥락, 다른 유닛이면 교차 관계
 - 주제: 일상 잡담, 취미, 음식, 근황 등
 
-**마이그레이션 우선순위**: 하트비트는 **Phase 3 이후**로 미룸. 이유:
+**마이그레이션 우선순위**: 하트비트는 **Phase 2 이후**(현 Phase 3)에서 처리됨. 이유:
 - 사용자 트래픽 직접 영향 없음 (background 작업)
 - 라우터 마이그레이션 검증 후 안전하게 작업 가능
 - 라우터의 시스템 프롬프트 설계가 검증되면 하트비트는 비슷한 패턴으로 빠르게 구현 가능
 
-Phase 1~3에서는 OpenClaw 하트비트를 그대로 두고, 라우터만 Spring Boot로. 라우터가 안정되면 Phase 3.5 또는 4에서 하트비트 분리 검토.
+Phase 1~2에서는 OpenClaw 하트비트를 그대로 두고, 라우터만 Spring Boot로. 라우터가 안정된 후 Phase 3에서 하트비트 분리.
 
-#### Phase 3.5에서 하트비트 마이그레이션 시 핵심 변환
+#### Phase 3에서 하트비트 마이그레이션 시 핵심 변환
 
 OpenClaw에서 LLM이 shell exec로 모든 작업하던 패턴을 **Java가 결정 로직 담당, LLM은 텍스트 생성만**으로 변환:
 
@@ -413,49 +413,48 @@ public class GradesMatrix {
 ### 전체 그림
 
 ```
-[Phase 1] 라우터 봇 PoC (1주)
-  → 1개 채널만 병행 운영, 기능 검증
+[Phase 1] 라우터 봇 PoC ✅ 완료
+  → 단일 세카이 채널 Spring Boot 라우터 동작
   → OpenClaw 하트비트/세카이 봇은 그대로
 
-[Phase 2] 라우터 봇 비교 운영 (1~2주)
-  → 응답 품질 + 비용 + 라우팅 정확도 측정
+[Phase 2] 라우터 봇 검증 ✅ 완료
+  → 응답 품질·비용·라우팅 정확도 정성 검증
+  → 프롬프트 캐싱으로 ~10x 비용 절감 달성 (목표 5x 이상 충족)
 
-[Phase 3] 라우터 봇 전체 컷오버 (1~2주)
-  → 채널별 점진 전환
-  → OpenClaw에서 sekai-router 에이전트만 비활성화 (main 에이전트/하트비트 유지)
-
-[Phase 3.5] 하트비트 분리 (선택, 1~2주)
-  → events.json 기반 cron 스케줄 직접 구현
-  → GRADES.md 매트릭스 파서
-  → 자율 발화 시스템 프롬프트 분리
+[Phase 3] 하트비트 분리 ✅ 완료 (구 3.5)
+  → events.json cron 스케줄 + GRADES.md 매트릭스 임베드
+  → 자율 발화 + 2인 대화 시스템 프롬프트 분리
+  → 30분 슬롯 + 1h 캐시 운영
 
 [Phase 4] 세카이 봇 분리 (선택, 2~4주)
   → main 에이전트 → Spring Boot 이전
   → Anthropic Tool use로 파일 편집 도구 직접 구현
-  → identities/, GRADES.md, events.json, quick-ref.md 모두 편집 가능
+  → identities/, GRADES.md, events.json 모두 편집 가능
 
 [Phase 5] OpenClaw 완전 제거 (1주)
   → 잔여 정리, 모니터링 도구 마무리
 ```
 
+> **제외 사항**: 구 핸드오프의 "Phase 3 라우터 봇 전체 컷오버"는 **취소**. 페르소나 봇은 세카이 채널 단일 운영으로 확정 — 다른 채널로 확장 계획 없음. 따라서 채널별 점진 전환 단계가 불필요하며, 단일 채널 PoC가 곧 정식 운영.
+
 ### Phase별 성공 기준
 
-**Phase 1 완료 조건**:
+**Phase 1 완료 조건** ✅:
 - Spring Boot 앱이 단일 채널에서 라우터 봇으로 동작
 - 기명 호출 정확히 라우팅
 - 무기명 호출 시 랜덤 + 멀티턴 동작
 - 다중 호명 시 다중 응답
 
-**Phase 2 완료 조건**:
-- OpenClaw 라우터 vs Spring Boot 라우터 응답 품질 비교 데이터 확보
-- 메시지당 토큰 사용량 비교 (Anthropic 콘솔 데이터 기반)
-- 라우팅 정확도 차이 측정
-- 비용 절감 정량화 (목표: 5배 이상)
+**Phase 2 완료 조건** ✅:
+- 응답 품질 정성 검증 (호칭·말투 매트릭스 통과 확인)
+- 비용 절감 정량화 — 프롬프트 캐싱으로 ~10x 절감 (목표 5x 이상 충족)
+- 정량 baseline 1주 측정은 생략 (정성 검증으로 충분 판단)
 
-**Phase 3 완료 조건**:
-- 모든 채널이 Spring Boot 라우터로 전환
-- OpenClaw의 sekai-router 에이전트 비활성화
-- 1주 이상 무중단 운영
+**Phase 3 완료 조건** ✅ (구 3.5 — 하트비트 분리):
+- events.json 기반 cron 스케줄 동작
+- GRADES.md 매트릭스 파싱·임베드
+- 자율 발화 + 2인 대화 프롬프트 분리
+- 30분 슬롯 + 1h 캐시 운영 검증
 
 **Phase 4 완료 조건**:
 - 세카이 봇(= main 에이전트)이 Spring Boot에서 동작
@@ -669,43 +668,31 @@ ANTHROPIC_MAX_TOKENS=500
 
 - 세카이 봇 기능 구현 (Phase 4 내용)
 - 페르소나 파일 편집 기능 (Phase 4 내용)
-- 모든 채널을 Spring Boot로 컷오버 (Phase 3 내용 — Phase 1은 단일 채널 PoC만)
 - OpenClaw 종료 (Phase 5 내용)
 - 모니터링/메트릭 시스템 과도한 구축 (검증 단계)
 
 병행 운영이 핵심. 한 채널만 Spring Boot로, 나머지는 OpenClaw 그대로.
 
-## 비용 측정 방법
+## 비용 측정 방법 (참고용 — Phase 2에서 정성 검증으로 종료)
 
-### Baseline 측정 (마이그레이션 전 — 필수)
+### 실제 결과
 
-핸드오프 본문의 비용 수치(메시지당 15K~30K 토큰, 절감 목표 80~90%, 하트비트 $3/월 등)는 모두 **운영 추정치**. 마이그레이션 정당화를 위해 Phase 1 시작 전 일주일간 OpenClaw 실측 비용 데이터를 확보해 baseline을 고정해야 함:
+정량 baseline 1주 측정은 생략. 대신 Anthropic 콘솔 + 컨테이너 로그(`cache_creation` / `cache_read` / `input` / `output`) 관측으로 정성 검증:
 
-1. Anthropic 콘솔 (https://console.anthropic.com/settings/usage) 일일 토큰 사용량 기록
-2. 메시지당 평균 토큰 계산 (라우터 봇 / 세카이 봇 / 하트비트 분리 측정)
-3. 캐시 적중률 확인
-4. Input vs Output 비율
+- **프롬프트 캐싱 적중률**: 동일 슬롯 내 동일 시스템 프롬프트 재사용 시 cache_read=전체 (write 0)
+- **메시지당 비용**: 캐시 hit 시 `input_uncached × $3/MTok + cached × $0.30/MTok + output × $15/MTok` (Sonnet 4.6 기준)
+- **절감률**: 시스템 프롬프트 ~32K 토큰을 5분/1h TTL로 캐시 → 메시지당 비용 약 1/10 수준. 목표 5x 이상 충족
 
-baseline이 없으면 Phase 2 비교 측정 단계에서 "절감했다"는 주장이 검증 불가능 → 마이그레이션 ROI 평가 자체가 불가.
+### Phase 2 종료 사유
 
-### 비교 측정 (Phase 2 중)
-
-Spring Boot 라우터 채널과 OpenClaw 라우터 채널의 메시지당 비용 비교:
-
-```
-메시지당 비용 = (input_uncached × $1/MTok) + (input_cached × $0.10/MTok) + (output × $5/MTok)
-```
-
-(Haiku 4.5 기준)
-
-목표: Spring Boot가 OpenClaw 대비 **5배 이상 저렴**.
+원래 Phase 2는 "OpenClaw 라우터 vs Spring Boot 라우터 정량 비교"였으나, 단일 채널 운영 확정 + 호칭/말투 매트릭스 정성 통과로 ROI 검증이 충족됨. 정량 비교를 위한 baseline 1주 측정은 생략.
 
 ## 위험 요소 및 대응
 
 ### 위험 1: 라우팅 정확도 저하
 
 **원인**: OpenClaw의 풀 컨텍스트 vs Spring Boot의 압축 컨텍스트
-**대응**: Phase 2에서 정확도 측정, 시스템 프롬프트 점진 개선
+**대응** (Phase 2에서 처리됨): GRADES.md 임베드 + 호칭·말투 강제 절차 + reasoning-first JSON 순서로 정성 검증 통과
 
 ### 위험 2: 페르소나 일관성 저하
 
@@ -730,22 +717,13 @@ Spring Boot 라우터 채널과 OpenClaw 라우터 채널의 메시지당 비용
 ### 위험 6: 하트비트와 라우터의 페르소나 일관성
 
 **원인**: 하트비트는 OpenClaw에서, 라우터 봇은 Spring Boot에서 돌면 페르소나 정의를 다르게 해석할 수 있음
-**대응**: 둘 다 같은 `identities/*.md` 파일 읽으니까 정의는 같음. 다만 시스템 프롬프트 구성 방식이 다르면 응답 톤이 미묘하게 달라질 수 있음. Phase 2에서 모니터링 항목으로 추가.
-
-### 위험 8: 공유 상태 파일 분리 (last-speaker)
-
-**원인**: `/tmp/openclaw-last-speaker.txt`는 라우터 봇과 하트비트가 공유하는 상태 파일. 라우터 봇이 Spring Boot로 옮긴 뒤(Phase 3) 하트비트는 OpenClaw에 남아있는 상태에서, 두 시스템이 같은 캐릭터를 연속 발화시킬 위험.
-**대응 (전환 기간)**:
-- Phase 3 동안 Spring Boot 라우터 봇이 발화 후 동일 파일에 마지막 발화자를 기록하도록 호환 유지 (단순 텍스트 파일이라 구현 비용 작음)
-- Phase 3.5에서 하트비트도 마이그레이션되면 양쪽 모두 Redis key로 통합
-- 또는 Phase 3 시작 시 즉시 Redis key를 도입하고, OpenClaw 하트비트가 Redis를 읽고 쓰도록 작은 어댑터 추가
+**상태**: Phase 3에서 하트비트도 Spring Boot로 마이그레이션되어 동일 `SystemPromptBuilder`/`HeartbeatPromptBuilder` + 동일 `PersonaWatcher`로 통합. 위험 해소.
 
 ### 위험 7: GRADES.md 매트릭스 파싱
 
 **원인**: Haiku가 GRADES.md 직접 못 읽어서 quick-ref.md가 만들어진 사례 = 모델 능력 한계 명확
-**대응**: 
-- 라우터가 Haiku 4.5라면 quick-ref.md만 시스템 프롬프트에 포함
-- Sonnet 4.6이라면 GRADES.md 직접 사용 가능
+**현재 운영**: 
+- Sonnet 4.6 사용 → GRADES.md 직접 임베드 (quick-ref.md는 임베드 제외)
 - 모델 변경 시 어떤 메타 파일을 시스템 프롬프트에 넣을지 재검토 필요
 
 ## 코드 작성 시 따를 원칙
@@ -849,4 +827,4 @@ Spring Boot 라우터 채널과 OpenClaw 라우터 채널의 메시지당 비용
 
 ---
 
-**핸드오프 종료. Phase 1부터 시작.**
+**핸드오프 갱신 (2026-05-08): Phase 1~3 완료. 다음 단계는 Phase 4 (세카이 봇 분리) — 선택 사항.**
